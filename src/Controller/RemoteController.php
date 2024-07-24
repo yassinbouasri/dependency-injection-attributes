@@ -37,7 +37,7 @@ final class RemoteController extends AbstractController
                     throw $this->createNotFoundException(sprintf('Button "%s" not found.', $button));
             }
 
-            $this->addFlash('success', sprintf('"%s" pressed.', u($button)->replace('-', ' ')->title(allWords: true)));
+            $this->addFlash('success', sprintf('%s pressed', u($button)->replace('-', ' ')->title(allWords: true)));
 
             return $this->redirectToRoute('home');
         }
