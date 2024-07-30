@@ -19,43 +19,31 @@
             <form method="post">
                 <div class="flex justify-center mb-5">
                     <button name="button" value="power" class="flex rounded-full border border-[#3F4241] hover:border-[#C33E21] w-[100px] h-[100px] justify-center items-center focus:bg-[#C33E21] group">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="184" height="184" viewBox="0 0 184 184" fill="none" class="fill-[#C33E21] group-focus:fill-[#ffffff]">
-                            <path d="M105.587 69.5278C106.873 67.2999 109.75 66.5114 111.76 68.1161C115.844 71.3754 119.06 75.6297 121.078 80.5031C123.694 86.8186 124.153 93.8209 122.384 100.424C120.615 107.027 116.716 112.861 111.293 117.023C105.87 121.184 99.225 123.44 92.3891 123.44C85.5532 123.44 78.9084 121.184 73.4851 117.023C68.0619 112.861 64.1633 107.027 62.394 100.424C60.6248 93.8209 61.0837 86.8186 63.6997 80.5031C65.7183 75.6297 68.9343 71.3754 73.0179 68.1161C75.0285 66.5114 77.9052 67.2999 79.1915 69.5278C80.4778 71.7556 79.6692 74.5729 77.7659 76.3035C75.4103 78.4453 73.5394 81.0918 72.3065 84.0682C70.4754 88.4891 70.1541 93.3906 71.3926 98.0127C72.631 102.635 75.36 106.719 79.1563 109.632C82.9526 112.545 87.604 114.124 92.3891 114.124C97.1742 114.124 101.826 112.545 105.622 109.632C109.418 106.719 112.147 102.635 113.386 98.0127C114.624 93.3906 114.303 88.489 112.472 84.0682C111.239 81.0918 109.368 78.4453 107.012 76.3035C105.109 74.5729 104.3 71.7556 105.587 69.5278Z"/>
-                            <rect x="88.1562" y="62.7449" width="8.46904" height="32.4647" rx="4.23452"/>
-                        </svg>
+                        <twig:ux:icon name="power" width="184" height="184" class="fill-[#C33E21] group-focus:fill-[#ffffff]" />
                     </button>
                 </div>
                 <div class="flex justify-center">
                     <ul class="grid grid-cols-2 row-span-3 gap-8">
                         <li>
                             <button name="button" value="channel-up" class="flex rounded-full border border-[#3F4241] hover:border-white w-[80px] h-[80px] justify-center items-center focus:bg-[#ffffff] group">
-                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-white group-focus:fill-[#0E0E0E]">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5 9C18.9987 9 19.4762 9.20531 19.8246 9.56943L32.4735 22.7917C33.1876 23.5381 33.1735 24.734 32.442 25.4628C31.7104 26.1915 30.5385 26.1771 29.8244 25.4306L18.5 13.593L7.17564 25.4306C6.46151 26.1771 5.28957 26.1915 4.55803 25.4628C3.82649 24.734 3.81237 23.5381 4.52649 22.7917L17.1754 9.56943C17.5238 9.20531 18.0013 9 18.5 9Z"/>
-                                </svg>
+                                <twig:ux:icon name="channel-up" width="36" height="36" class="fill-white group-focus:fill-[#0E0E0E]" />
                             </button>
                         </li>
                         <li>
                             <button name="button" value="channel-down" class="flex rounded-full border border-[#3F4241] hover:border-white w-[80px] h-[80px] justify-center items-center focus:bg-[#ffffff] group">
-                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-white group-focus:fill-[#0E0E0E]">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.5 26C18.9987 26 19.4762 25.7947 19.8246 25.4306L32.4735 12.2083C33.1876 11.4619 33.1735 10.266 32.442 9.53725C31.7104 8.80853 30.5385 8.82294 29.8244 9.56943L18.5 21.407L7.17564 9.56943C6.46151 8.82294 5.28957 8.80853 4.55803 9.53725C3.82649 10.266 3.81237 11.4619 4.52649 12.2083L17.1754 25.4306C17.5238 25.7947 18.0013 26 18.5 26Z"/>
-                                </svg>
+                                <twig:ux:icon name="channel-down" width="36" height="36" class="fill-white group-focus:fill-[#0E0E0E]" />
                             </button>
                         </li>
                         <li>
                             <button name="button" value="volume-up" class="flex rounded-full border border-[#3F4241] hover:border-white w-[80px] h-[80px] justify-center items-center focus:bg-[#ffffff] group">
-                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-white group-focus:fill-[#0E0E0E]">
-                                    <path d="M20.0236 6.02241C20.0236 4.90546 19.1181 4 18.0012 4C16.8842 4 15.9788 4.90546 15.9788 6.02241V15.9778H6.02241C4.90546 15.9778 4 16.8832 4 18.0002C4 19.1171 4.90546 20.0226 6.02241 20.0226H15.9788V29.9776C15.9788 31.0945 16.8842 32 18.0012 32C19.1181 32 20.0236 31.0945 20.0236 29.9776V20.0226H29.9776C31.0945 20.0226 32 19.1171 32 18.0002C32 16.8832 31.0945 15.9778 29.9776 15.9778H20.0236V6.02241Z"/>
-                                </svg>
+                                <twig:ux:icon name="volume-up" width="36" height="36" class="fill-white group-focus:fill-[#0E0E0E]" />
                             </button>
                         </li>
                         <li>
                             <button name="button" value="volume-down" class="flex rounded-full border border-[#3F4241] hover:border-white w-[80px] h-[80px] justify-center items-center focus:bg-[#ffffff] group">
-                                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-white group-focus:fill-[#0E0E0E]">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M31 18C31 19.1046 30.1592 20 29.1221 20L6.87795 20C5.84079 20 5 19.1046 5 18C5 16.8954 5.84079 16 6.87795 16L29.1221 16C30.1592 16 31 16.8954 31 18Z"/>
-                                </svg>
+                                <twig:ux:icon name="volume-down" width="36" height="36" class="fill-white group-focus:fill-[#0E0E0E]" />
                             </button>
                         </li>
-
                         <li>
                             <button name="button" value="diagnostics" class="flex rounded-full border border-[#3F4241] hover:border-white w-[80px] h-[80px] justify-center items-center focus:bg-[#ffffff] group">
                                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="fill-white group-focus:fill-[#0E0E0E]">
