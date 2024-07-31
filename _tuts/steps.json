@@ -84,7 +84,42 @@
             "id": "add-mutebutton",
             "name": "Add MuteButton",
             "description": null
+        },
+        {
+            "id": "logging-add-remoteinterface",
+            "name": "Logging: add RemoteInterface",
+            "description": null
+        },
+        {
+            "id": "logging-use-remoteinterface-in-controller",
+            "name": "Logging: use RemoteInterface in controller",
+            "description": null
+        },
+        {
+            "id": "logging-add-loggerremote",
+            "name": "Logging: add LoggerRemote",
+            "description": null
+        },
+        {
+            "id": "logging-add-asalias-to-buttonremote",
+            "name": "Logging: add AsAlias to ButtonRemote",
+            "description": null
+        },
+        {
+            "id": "logging-dd-remote-in-controller",
+            "name": "Logging: dd $remote in controller",
+            "description": null
+        },
+        {
+            "id": "logging-add-asdecorator-to-loggerremote",
+            "name": "Logging: add AsDecorator to LoggerRemote",
+            "description": null
+        },
+        {
+            "id": "logging-remove-dd-remote-in-controller",
+            "name": "Logging: remove dd $remote in controller",
+            "description": null
         }
     ],
-    "sha": "7e0e5cb82fc42cb18d2983be054c57d756d20eb4"
+    "sha": "1ed3af268c2b49f0b8820b03d1c4444248620031"
 }

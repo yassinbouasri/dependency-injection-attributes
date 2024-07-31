@@ -1,0 +1,17 @@
+diff --git a/src/Remote/LoggerRemote.php b/src/Remote/LoggerRemote.php
+index cc7ebba..75e2cf8 100644
+--- a/src/Remote/LoggerRemote.php
++++ b/src/Remote/LoggerRemote.php
+@@ -3,10 +3,12 @@
+ namespace App\Remote;
+ 
+ use Psr\Log\LoggerInterface;
++use Symfony\Component\DependencyInjection\Attribute\AsDecorator;
+ 
+ /**
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
++#[AsDecorator(RemoteInterface::class)]
+ final class LoggerRemote implements RemoteInterface
+ {
+     public function __construct(
