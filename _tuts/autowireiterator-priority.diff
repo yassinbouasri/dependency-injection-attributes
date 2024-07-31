@@ -1,0 +1,65 @@
+diff --git a/src/Remote/Button/ChannelDownButton.php b/src/Remote/Button/ChannelDownButton.php
+index 054062f..dc69809 100644
+--- a/src/Remote/Button/ChannelDownButton.php
++++ b/src/Remote/Button/ChannelDownButton.php
+@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
+ /**
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
+-#[AsTaggedItem('channel-down')]
++#[AsTaggedItem('channel-down', priority: 80)]
+ final class ChannelDownButton implements ButtonInterface
+ {
+     public function press(): void
+diff --git a/src/Remote/Button/ChannelUpButton.php b/src/Remote/Button/ChannelUpButton.php
+index 7936059..408a4f2 100644
+--- a/src/Remote/Button/ChannelUpButton.php
++++ b/src/Remote/Button/ChannelUpButton.php
+@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
+ /**
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
+-#[AsTaggedItem('channel-up')]
++#[AsTaggedItem('channel-up', priority: 90)]
+ final class ChannelUpButton implements ButtonInterface
+ {
+     public function press(): void
+diff --git a/src/Remote/Button/PowerButton.php b/src/Remote/Button/PowerButton.php
+index b45b6b4..cc13f18 100644
+--- a/src/Remote/Button/PowerButton.php
++++ b/src/Remote/Button/PowerButton.php
+@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
+ /**
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
+-#[AsTaggedItem('power')]
++#[AsTaggedItem('power', priority: 100)]
+ final class PowerButton implements ButtonInterface
+ {
+     public function press(): void
+diff --git a/src/Remote/Button/VolumeDownButton.php b/src/Remote/Button/VolumeDownButton.php
+index 0066fc1..5436283 100644
+--- a/src/Remote/Button/VolumeDownButton.php
++++ b/src/Remote/Button/VolumeDownButton.php
+@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
+ /**
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
+-#[AsTaggedItem('volume-down')]
++#[AsTaggedItem('volume-down', priority: 60)]
+ final class VolumeDownButton implements ButtonInterface
+ {
+     public function press(): void
+diff --git a/src/Remote/Button/VolumeUpButton.php b/src/Remote/Button/VolumeUpButton.php
+index 16bb26c..a9e166e 100644
+--- a/src/Remote/Button/VolumeUpButton.php
++++ b/src/Remote/Button/VolumeUpButton.php
+@@ -7,7 +7,7 @@ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
+ /**
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
+-#[AsTaggedItem('volume-up')]
++#[AsTaggedItem('volume-up', priority: 70)]
+ final class VolumeUpButton implements ButtonInterface
+ {
+     public function press(): void

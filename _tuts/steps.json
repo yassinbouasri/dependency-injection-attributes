@@ -49,7 +49,17 @@
             "id": "autowireiterator-refactor-template",
             "name": "AutowireIterator: refactor template",
             "description": null
+        },
+        {
+            "id": "autowireiterator-indexattribute",
+            "name": "AutowireIterator: indexAttribute",
+            "description": null
+        },
+        {
+            "id": "autowireiterator-priority",
+            "name": "AutowireIterator: priority",
+            "description": null
         }
     ],
-    "sha": "cec95135065e9885f53445012f612e8b1468ab50"
+    "sha": "6b6ef91f846a039ab34480f13e4a1620d9c16b62"
 }
