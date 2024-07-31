@@ -1,0 +1,14 @@
+diff --git a/src/Controller/RemoteController.php b/src/Controller/RemoteController.php
+index 3bdeb1a..b2efcc2 100644
+--- a/src/Controller/RemoteController.php
++++ b/src/Controller/RemoteController.php
+@@ -30,6 +30,8 @@ final class RemoteController extends AbstractController
+             return $this->redirectToRoute('home');
+         }
+ 
+-        return $this->render('index.html.twig');
++        return $this->render('index.html.twig', [
++            'buttons' => $remote->buttons(),
++        ]);
+     }
+ }

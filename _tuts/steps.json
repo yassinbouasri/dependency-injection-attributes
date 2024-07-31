@@ -34,7 +34,22 @@
             "id": "astaggeditem",
             "name": "AsTaggedItem",
             "description": null
+        },
+        {
+            "id": "autowireiterator-add-buttons",
+            "name": "AutowireIterator: add buttons()",
+            "description": null
+        },
+        {
+            "id": "autowireiterator-pass-buttons-to-template",
+            "name": "AutowireIterator: pass buttons to template",
+            "description": null
+        },
+        {
+            "id": "autowireiterator-refactor-template",
+            "name": "AutowireIterator: refactor template",
+            "description": null
         }
     ],
-    "sha": "538dac09383cdc8ade25ecdd881d0799e4ab51a1"
+    "sha": "cec95135065e9885f53445012f612e8b1468ab50"
 }
