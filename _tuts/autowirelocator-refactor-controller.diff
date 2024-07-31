@@ -1,5 +1,5 @@
 diff --git a/src/Controller/RemoteController.php b/src/Controller/RemoteController.php
-index ff5cdb0..9e6a0de 100644
+index ff5cdb0..3bdeb1a 100644
 --- a/src/Controller/RemoteController.php
 +++ b/src/Controller/RemoteController.php
 @@ -2,6 +2,8 @@
@@ -39,8 +39,32 @@ index ff5cdb0..9e6a0de 100644
 -                    throw $this->createNotFoundException(sprintf('Button "%s" not found.', $button));
 +            try {
 +                $remote->press($button = $request->request->getString('button'));
-+            } catch (NotFoundExceptionInterface) {
-+                throw $this->createNotFoundException(sprintf('Button "%s" not found.', $button));
++            } catch (NotFoundExceptionInterface $e) {
++                throw $this->createNotFoundException(sprintf('Button "%s" not found.', $button), previous: $e);
              }
  
              $this->addFlash('success', sprintf('%s pressed', u($button)->replace('-', ' ')->title(allWords: true)));
+diff --git a/src/Remote/ButtonRemote.php b/src/Remote/ButtonRemote.php
+index 0bc9768..5e36f67 100644
+--- a/src/Remote/ButtonRemote.php
++++ b/src/Remote/ButtonRemote.php
+@@ -2,6 +2,8 @@
+ 
+ namespace App\Remote;
+ 
++use App\Remote\Button\ChannelDownButton;
++use App\Remote\Button\ChannelUpButton;
+ use App\Remote\Button\PowerButton;
+ use App\Remote\Button\VolumeDownButton;
+ use App\Remote\Button\VolumeUpButton;
+@@ -16,8 +18,8 @@ final class ButtonRemote
+     public function __construct(
+         #[AutowireLocator([
+             'power' => PowerButton::class,
+-            'channel-up' => VolumeUpButton::class,
+-            'channel-down' => VolumeDownButton::class,
++            'channel-up' => ChannelUpButton::class,
++            'channel-down' => ChannelDownButton::class,
+             'volume-up' => VolumeUpButton::class,
+             'volume-down' => VolumeDownButton::class,
+         ])]

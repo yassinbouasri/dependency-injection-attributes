@@ -19,7 +19,22 @@
             "id": "autowirelocator-refactor-controller",
             "name": "AutowireLocator: refactor controller",
             "description": null
+        },
+        {
+            "id": "autoconfiguretag",
+            "name": "AutoconfigureTag",
+            "description": null
+        },
+        {
+            "id": "refactor-autowirelocator",
+            "name": "Refactor AutowireLocator",
+            "description": null
+        },
+        {
+            "id": "astaggeditem",
+            "name": "AsTaggedItem",
+            "description": null
         }
     ],
-    "sha": "d1e12646761fa4fa43494c69f64290f0606e3a7e"
+    "sha": "538dac09383cdc8ade25ecdd881d0799e4ab51a1"
 }
