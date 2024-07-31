@@ -209,7 +209,17 @@
             "id": "lazy-dump-button-press-button-dump-again",
             "name": "Lazy: dump button, press button, dump again",
             "description": null
+        },
+        {
+            "id": "lazy-make-all-buttons-lazy",
+            "name": "Lazy: make all buttons lazy",
+            "description": null
+        },
+        {
+            "id": "lazy-use-autoconfigure",
+            "name": "Lazy: use Autoconfigure",
+            "description": null
         }
     ],
-    "sha": "49f04d449bdcd7ba63de254d71c6672543aae872"
+    "sha": "725e31da6f884298f30f184e3c601a7368b36b28"
 }

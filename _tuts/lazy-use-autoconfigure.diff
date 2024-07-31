@@ -1,0 +1,24 @@
+diff --git a/src/Remote/Button/ButtonInterface.php b/src/Remote/Button/ButtonInterface.php
+index 32d8973..8599183 100644
+--- a/src/Remote/Button/ButtonInterface.php
++++ b/src/Remote/Button/ButtonInterface.php
+@@ -2,14 +2,15 @@
+ 
+ namespace App\Remote\Button;
+ 
+-use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+-use Symfony\Component\DependencyInjection\Attribute\Lazy;
++use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
+ 
+ /**
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
+-#[AutoconfigureTag]
+-#[Lazy(ButtonInterface::class)]
++#[Autoconfigure(
++    tags: [ButtonInterface::class],
++    lazy: ButtonInterface::class,
++)]
+ interface ButtonInterface
+ {
+     public function press(): void;

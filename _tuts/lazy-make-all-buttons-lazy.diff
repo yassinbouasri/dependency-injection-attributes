@@ -1,0 +1,36 @@
+diff --git a/src/Remote/Button/ButtonInterface.php b/src/Remote/Button/ButtonInterface.php
+index b5808da..32d8973 100644
+--- a/src/Remote/Button/ButtonInterface.php
++++ b/src/Remote/Button/ButtonInterface.php
+@@ -3,11 +3,13 @@
+ namespace App\Remote\Button;
+ 
+ use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
++use Symfony\Component\DependencyInjection\Attribute\Lazy;
+ 
+ /**
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
+ #[AutoconfigureTag]
++#[Lazy(ButtonInterface::class)]
+ interface ButtonInterface
+ {
+     public function press(): void;
+diff --git a/src/Remote/Button/PowerButton.php b/src/Remote/Button/PowerButton.php
+index 8947eff..cc13f18 100644
+--- a/src/Remote/Button/PowerButton.php
++++ b/src/Remote/Button/PowerButton.php
+@@ -3,13 +3,11 @@
+ namespace App\Remote\Button;
+ 
+ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
+-use Symfony\Component\DependencyInjection\Attribute\Lazy;
+ 
+ /**
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
+ #[AsTaggedItem('power', priority: 100)]
+-#[Lazy(ButtonInterface::class)]
+ final class PowerButton implements ButtonInterface
+ {
+     public function press(): void
