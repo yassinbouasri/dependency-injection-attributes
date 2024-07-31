@@ -1,0 +1,21 @@
+diff --git a/src/Controller/RemoteController.php b/src/Controller/RemoteController.php
+index e3a6802..bb418f8 100644
+--- a/src/Controller/RemoteController.php
++++ b/src/Controller/RemoteController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace App\Controller;
+ 
++use App\Remote\Button\ButtonInterface;
+ use App\Remote\Button\PowerButton;
+ use App\Remote\RemoteInterface;
+ use Psr\Container\NotFoundExceptionInterface;
+@@ -37,7 +38,7 @@ final class RemoteController extends AbstractController
+     }
+ 
+     #[Route('/power', name: 'power')]
+-    public function power(PowerButton $button): Response
++    public function power(ButtonInterface $button): Response
+     {
+         if (true) { // some condition
+             dd($button);

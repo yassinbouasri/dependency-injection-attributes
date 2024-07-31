@@ -174,7 +174,42 @@
             "id": "exclude-remove",
             "name": "Exclude: remove",
             "description": null
+        },
+        {
+            "id": "lazy-add-route",
+            "name": "Lazy: add route",
+            "description": null
+        },
+        {
+            "id": "lazy-add-lazy-attribute-to-powerbutton",
+            "name": "Lazy: add Lazy attribute to PowerButton",
+            "description": null
+        },
+        {
+            "id": "lazy-remove-final-from-powerbutton",
+            "name": "Lazy: remove final from PowerButton",
+            "description": null
+        },
+        {
+            "id": "lazy-use-interface",
+            "name": "Lazy: use interface",
+            "description": null
+        },
+        {
+            "id": "lazy-use-interface-in-controller",
+            "name": "Lazy: use interface in controller",
+            "description": null
+        },
+        {
+            "id": "lazy-autowire-powerbutton",
+            "name": "Lazy: Autowire PowerButton",
+            "description": null
+        },
+        {
+            "id": "lazy-dump-button-press-button-dump-again",
+            "name": "Lazy: dump button, press button, dump again",
+            "description": null
         }
     ],
-    "sha": "553fa6286504789d15386aae0e9fd8de21df20c3"
+    "sha": "49f04d449bdcd7ba63de254d71c6672543aae872"
 }

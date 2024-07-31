@@ -1,0 +1,18 @@
+diff --git a/src/Remote/Button/PowerButton.php b/src/Remote/Button/PowerButton.php
+index cc13f18..77c4bfb 100644
+--- a/src/Remote/Button/PowerButton.php
++++ b/src/Remote/Button/PowerButton.php
+@@ -3,11 +3,13 @@
+ namespace App\Remote\Button;
+ 
+ use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
++use Symfony\Component\DependencyInjection\Attribute\Lazy;
+ 
+ /**
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
+ #[AsTaggedItem('power', priority: 100)]
++#[Lazy]
+ final class PowerButton implements ButtonInterface
+ {
+     public function press(): void
