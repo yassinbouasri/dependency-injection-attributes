@@ -144,7 +144,37 @@
             "id": "target-rename-target-attribute-name",
             "name": "Target: rename Target attribute name",
             "description": null
+        },
+        {
+            "id": "when-add-diagnosticsbutton",
+            "name": "When: add DiagnosticsButton",
+            "description": null
+        },
+        {
+            "id": "when-add-when-attribute",
+            "name": "When: add When attribute",
+            "description": null
+        },
+        {
+            "id": "when-change-to-prod",
+            "name": "When: change to prod",
+            "description": null
+        },
+        {
+            "id": "when-change-back-to-dev",
+            "name": "When: change back to dev",
+            "description": null
+        },
+        {
+            "id": "exclude-add",
+            "name": "Exclude: add",
+            "description": null
+        },
+        {
+            "id": "exclude-remove",
+            "name": "Exclude: remove",
+            "description": null
         }
     ],
-    "sha": "f8495302e6c99dc12e0cb1244d5ab0563ead7067"
+    "sha": "553fa6286504789d15386aae0e9fd8de21df20c3"
 }

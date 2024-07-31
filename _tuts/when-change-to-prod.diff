@@ -1,0 +1,13 @@
+diff --git a/src/Remote/Button/DiagnosticsButton.php b/src/Remote/Button/DiagnosticsButton.php
+index 135e321..f5bdab9 100644
+--- a/src/Remote/Button/DiagnosticsButton.php
++++ b/src/Remote/Button/DiagnosticsButton.php
+@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Attribute\When;
+  * @author Kevin Bond <kevinbond@gmail.com>
+  */
+ #[AsTaggedItem('diagnostics')]
+-#[When('dev')]
++#[When('prod')]
+ final class DiagnosticsButton implements ButtonInterface
+ {
+     public function press(): void
