@@ -1,0 +1,117 @@
+diff --git a/src/Remote/Button/ButtonInterface.php b/src/Remote/Button/ButtonInterface.php
+new file mode 100644
+index 0000000..aabab04
+--- /dev/null
++++ b/src/Remote/Button/ButtonInterface.php
+@@ -0,0 +1,11 @@
++<?php
++
++namespace App\Remote\Button;
++
++/**
++ * @author Kevin Bond <kevinbond@gmail.com>
++ */
++interface ButtonInterface
++{
++    public function press(): void;
++}
+diff --git a/src/Remote/Button/ChannelDownButton.php b/src/Remote/Button/ChannelDownButton.php
+new file mode 100644
+index 0000000..1417bda
+--- /dev/null
++++ b/src/Remote/Button/ChannelDownButton.php
+@@ -0,0 +1,14 @@
++<?php
++
++namespace App\Remote\Button;
++
++/**
++ * @author Kevin Bond <kevinbond@gmail.com>
++ */
++final class ChannelDownButton implements ButtonInterface
++{
++    public function press(): void
++    {
++        dump('Change the channel down');
++    }
++}
+diff --git a/src/Remote/Button/ChannelUpButton.php b/src/Remote/Button/ChannelUpButton.php
+new file mode 100644
+index 0000000..44ffa89
+--- /dev/null
++++ b/src/Remote/Button/ChannelUpButton.php
+@@ -0,0 +1,14 @@
++<?php
++
++namespace App\Remote\Button;
++
++/**
++ * @author Kevin Bond <kevinbond@gmail.com>
++ */
++final class ChannelUpButton implements ButtonInterface
++{
++    public function press(): void
++    {
++        dump('Change the channel up');
++    }
++}
+diff --git a/src/Remote/Button/PowerButton.php b/src/Remote/Button/PowerButton.php
+new file mode 100644
+index 0000000..92b67d9
+--- /dev/null
++++ b/src/Remote/Button/PowerButton.php
+@@ -0,0 +1,14 @@
++<?php
++
++namespace App\Remote\Button;
++
++/**
++ * @author Kevin Bond <kevinbond@gmail.com>
++ */
++final class PowerButton implements ButtonInterface
++{
++    public function press(): void
++    {
++        dump('Power on/off the TV');
++    }
++}
+diff --git a/src/Remote/Button/VolumeDownButton.php b/src/Remote/Button/VolumeDownButton.php
+new file mode 100644
+index 0000000..c82e9e1
+--- /dev/null
++++ b/src/Remote/Button/VolumeDownButton.php
+@@ -0,0 +1,14 @@
++<?php
++
++namespace App\Remote\Button;
++
++/**
++ * @author Kevin Bond <kevinbond@gmail.com>
++ */
++final class VolumeDownButton implements ButtonInterface
++{
++    public function press(): void
++    {
++        dump('Change the volume down');
++    }
++}
+diff --git a/src/Remote/Button/VolumeUpButton.php b/src/Remote/Button/VolumeUpButton.php
+new file mode 100644
+index 0000000..58ccffe
+--- /dev/null
++++ b/src/Remote/Button/VolumeUpButton.php
+@@ -0,0 +1,14 @@
++<?php
++
++namespace App\Remote\Button;
++
++/**
++ * @author Kevin Bond <kevinbond@gmail.com>
++ */
++final class VolumeUpButton implements ButtonInterface
++{
++    public function press(): void
++    {
++        dump('Change the volume up');
++    }
++}

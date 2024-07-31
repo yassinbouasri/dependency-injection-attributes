@@ -1,0 +1,25 @@
+{
+    "steps": [
+        {
+            "id": "start",
+            "name": "start",
+            "description": null
+        },
+        {
+            "id": "autowirelocator-buttoninterface",
+            "name": "AutowireLocator: ButtonInterface",
+            "description": null
+        },
+        {
+            "id": "autowirelocator-buttonremote",
+            "name": "AutowireLocator: ButtonRemote",
+            "description": null
+        },
+        {
+            "id": "autowirelocator-refactor-controller",
+            "name": "AutowireLocator: refactor controller",
+            "description": null
+        }
+    ],
+    "sha": "d1e12646761fa4fa43494c69f64290f0606e3a7e"
+}

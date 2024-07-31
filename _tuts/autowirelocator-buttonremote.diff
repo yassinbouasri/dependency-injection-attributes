@@ -1,0 +1,38 @@
+diff --git a/src/Remote/ButtonRemote.php b/src/Remote/ButtonRemote.php
+new file mode 100644
+index 0000000..0bc9768
+--- /dev/null
++++ b/src/Remote/ButtonRemote.php
+@@ -0,0 +1,32 @@
++<?php
++
++namespace App\Remote;
++
++use App\Remote\Button\PowerButton;
++use App\Remote\Button\VolumeDownButton;
++use App\Remote\Button\VolumeUpButton;
++use Psr\Container\ContainerInterface;
++use Symfony\Component\DependencyInjection\Attribute\AutowireLocator;
++
++/**
++ * @author Kevin Bond <kevinbond@gmail.com>
++ */
++final class ButtonRemote
++{
++    public function __construct(
++        #[AutowireLocator([
++            'power' => PowerButton::class,
++            'channel-up' => VolumeUpButton::class,
++            'channel-down' => VolumeDownButton::class,
++            'volume-up' => VolumeUpButton::class,
++            'volume-down' => VolumeDownButton::class,
++        ])]
++        private ContainerInterface $buttons,
++    ) {
++    }
++
++    public function press(string $name): void
++    {
++        $this->buttons->get($name)->press();
++    }
++}
