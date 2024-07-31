@@ -59,7 +59,32 @@
             "id": "autowireiterator-priority",
             "name": "AutowireIterator: priority",
             "description": null
+        },
+        {
+            "id": "servicecollectioninterface",
+            "name": "ServiceCollectionInterface",
+            "description": null
+        },
+        {
+            "id": "servicecollectioninterface-getprovidedservices-dd",
+            "name": "ServiceCollectionInterface: getProvidedServices() dd",
+            "description": null
+        },
+        {
+            "id": "servicecollectioninterface-getprovidedservices-remove-dd",
+            "name": "ServiceCollectionInterface: getProvidedServices() remove dd",
+            "description": null
+        },
+        {
+            "id": "servicecollectioninterface-getprovidedservices-keys",
+            "name": "ServiceCollectionInterface: getProvidedServices() keys",
+            "description": null
+        },
+        {
+            "id": "add-mutebutton",
+            "name": "Add MuteButton",
+            "description": null
         }
     ],
-    "sha": "6b6ef91f846a039ab34480f13e4a1620d9c16b62"
+    "sha": "7e0e5cb82fc42cb18d2983be054c57d756d20eb4"
 }
