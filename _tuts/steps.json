@@ -119,7 +119,32 @@
             "id": "logging-remove-dd-remote-in-controller",
             "name": "Logging: remove dd $remote in controller",
             "description": null
+        },
+        {
+            "id": "target-add-custom-logging-channel",
+            "name": "Target: add custom logging channel",
+            "description": null
+        },
+        {
+            "id": "target-rename-buttonlogger",
+            "name": "Target: rename $buttonLogger",
+            "description": null
+        },
+        {
+            "id": "target-add-target-attribute",
+            "name": "Target: add Target attribute",
+            "description": null
+        },
+        {
+            "id": "target-rename-button-channel",
+            "name": "Target: rename button channel",
+            "description": null
+        },
+        {
+            "id": "target-rename-target-attribute-name",
+            "name": "Target: rename Target attribute name",
+            "description": null
         }
     ],
-    "sha": "1ed3af268c2b49f0b8820b03d1c4444248620031"
+    "sha": "f8495302e6c99dc12e0cb1244d5ab0563ead7067"
 }

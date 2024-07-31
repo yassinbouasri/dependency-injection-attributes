@@ -1,0 +1,37 @@
+diff --git a/config/packages/monolog.yaml b/config/packages/monolog.yaml
+index 9db7d8a..7acea8c 100644
+--- a/config/packages/monolog.yaml
++++ b/config/packages/monolog.yaml
+@@ -1,6 +1,7 @@
+ monolog:
+     channels:
+         - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
++        - button
+ 
+ when@dev:
+     monolog:
+diff --git a/src/Remote/LoggerRemote.php b/src/Remote/LoggerRemote.php
+index 75e2cf8..85255d9 100644
+--- a/src/Remote/LoggerRemote.php
++++ b/src/Remote/LoggerRemote.php
+@@ -13,17 +13,17 @@ final class LoggerRemote implements RemoteInterface
+ {
+     public function __construct(
+         private RemoteInterface $inner,
+-        private LoggerInterface $logger,
++        private LoggerInterface $buttonLogger,
+     ) {
+     }
+ 
+     public function press(string $name): void
+     {
+-        $this->logger->info('Pressing button {name}', ['name' => $name]);
++        $this->buttonLogger->info('Pressing button {name}', ['name' => $name]);
+ 
+         $this->inner->press($name);
+ 
+-        $this->logger->info('Button {name} pressed', ['name' => $name]);
++        $this->buttonLogger->info('Button {name} pressed', ['name' => $name]);
+     }
+ 
+     public function buttons(): iterable
