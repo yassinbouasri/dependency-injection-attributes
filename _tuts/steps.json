@@ -219,7 +219,32 @@
             "id": "lazy-use-autoconfigure",
             "name": "Lazy: use Autoconfigure",
             "description": null
+        },
+        {
+            "id": "more-lazy-add-buttons-route",
+            "name": "More Lazy: add buttons route",
+            "description": null
+        },
+        {
+            "id": "more-lazy-autowireserviceclosure",
+            "name": "More Lazy: AutowireServiceClosure",
+            "description": null
+        },
+        {
+            "id": "more-lazy-autowirecallable",
+            "name": "More Lazy: AutowireCallable",
+            "description": null
+        },
+        {
+            "id": "more-lazy-autowiremethodof",
+            "name": "More Lazy: AutowireMethodOf",
+            "description": null
+        },
+        {
+            "id": "more-lazy-autowiremethodof-rename-argument",
+            "name": "More Lazy: AutowireMethodOf rename argument",
+            "description": null
         }
     ],
-    "sha": "725e31da6f884298f30f184e3c601a7368b36b28"
+    "sha": "d62f39442bc48815fe76bb5794655a16a7af184c"
 }
