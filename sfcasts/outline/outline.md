@@ -1,6 +1,6 @@
 # DI Attributes
 
-## Intro
+## Introduction
 
 - smart tv webapp
 - lost smart tv remote
@@ -17,15 +17,12 @@
 - Use array with AutowireLocator to inject directly in constructor
 - Not ideal, each time we add a button, we need to update the attribute array
 
-## Simplify with `#[AutoconfigureTag]`
+## Simplify with `#[AutoconfigureTag]` and `#[AsTaggedItem]`
 
 - add to ButtonInterface
 - replace AutowireLocator array with interface name
 - broken... container keyed by class name
-
-## Set the service ID with `#[AsTaggedItem]`
-
-- add to each button class
+- add AsTaggedItem to each button with service id
 - working again!
 
 ## List buttons with `#[AutowireIterator]`
@@ -74,7 +71,7 @@
 - edit the Target argument
 - works again!
 
-## `#[When]`
+## `#[When]` and `#[Exclude]`
 
 - add a diagnostics button
 - we only want available in development
@@ -94,7 +91,7 @@
 - show it's still working
 - add to ButtonInterface to make all instances lazy - resolve problems...
 
-## More Laziness Helpers
+## More Laziness Attributes
 
 - Power button: if tv is off, requires a "heavy to instantiate" Alexa service, we don't want this loaded when the tv is on
 - AutowireServiceClosure
