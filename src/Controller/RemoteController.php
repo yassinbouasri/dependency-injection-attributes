@@ -8,9 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use function Symfony\Component\String\u;
 
-/**
- * @author Kevin Bond <kevinbond@gmail.com>
- */
 final class RemoteController extends AbstractController
 {
     #[Route('/', name: 'home', methods: ['GET', 'POST'])]
