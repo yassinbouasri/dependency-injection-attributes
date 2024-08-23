@@ -1,8 +1,8 @@
 diff --git a/src/Remote/ButtonRemote.php b/src/Remote/ButtonRemote.php
-index 5e36f67..ead899b 100644
+index 4a51930..31517eb 100644
 --- a/src/Remote/ButtonRemote.php
 +++ b/src/Remote/ButtonRemote.php
-@@ -2,11 +2,7 @@
+@@ -2,24 +2,14 @@
  
  namespace App\Remote;
  
@@ -15,7 +15,6 @@ index 5e36f67..ead899b 100644
  use Psr\Container\ContainerInterface;
  use Symfony\Component\DependencyInjection\Attribute\AutowireLocator;
  
-@@ -16,13 +12,7 @@ use Symfony\Component\DependencyInjection\Attribute\AutowireLocator;
  final class ButtonRemote
  {
      public function __construct(

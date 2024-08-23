@@ -1,5 +1,5 @@
 diff --git a/src/Controller/RemoteController.php b/src/Controller/RemoteController.php
-index e3a6802..bb418f8 100644
+index 10c5ea0..20e414f 100644
 --- a/src/Controller/RemoteController.php
 +++ b/src/Controller/RemoteController.php
 @@ -2,6 +2,7 @@
@@ -10,7 +10,7 @@ index e3a6802..bb418f8 100644
  use App\Remote\Button\PowerButton;
  use App\Remote\RemoteInterface;
  use Psr\Container\NotFoundExceptionInterface;
-@@ -37,7 +38,7 @@ final class RemoteController extends AbstractController
+@@ -34,7 +35,7 @@ final class RemoteController extends AbstractController
      }
  
      #[Route('/power', name: 'power')]

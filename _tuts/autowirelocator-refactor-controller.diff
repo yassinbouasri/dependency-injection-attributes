@@ -1,5 +1,5 @@
 diff --git a/src/Controller/RemoteController.php b/src/Controller/RemoteController.php
-index ff5cdb0..3bdeb1a 100644
+index 2c699ff..02b9199 100644
 --- a/src/Controller/RemoteController.php
 +++ b/src/Controller/RemoteController.php
 @@ -2,6 +2,8 @@
@@ -11,7 +11,7 @@ index ff5cdb0..3bdeb1a 100644
  use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  use Symfony\Component\HttpFoundation\Request;
  use Symfony\Component\HttpFoundation\Response;
-@@ -14,27 +16,13 @@ use function Symfony\Component\String\u;
+@@ -11,27 +13,13 @@ use function Symfony\Component\String\u;
  final class RemoteController extends AbstractController
  {
      #[Route('/', name: 'home', methods: ['GET', 'POST'])]
@@ -45,7 +45,7 @@ index ff5cdb0..3bdeb1a 100644
  
              $this->addFlash('success', sprintf('%s pressed', u($button)->replace('-', ' ')->title(allWords: true)));
 diff --git a/src/Remote/ButtonRemote.php b/src/Remote/ButtonRemote.php
-index 0bc9768..5e36f67 100644
+index a6c2829..4a51930 100644
 --- a/src/Remote/ButtonRemote.php
 +++ b/src/Remote/ButtonRemote.php
 @@ -2,6 +2,8 @@
@@ -57,7 +57,7 @@ index 0bc9768..5e36f67 100644
  use App\Remote\Button\PowerButton;
  use App\Remote\Button\VolumeDownButton;
  use App\Remote\Button\VolumeUpButton;
-@@ -16,8 +18,8 @@ final class ButtonRemote
+@@ -13,8 +15,8 @@ final class ButtonRemote
      public function __construct(
          #[AutowireLocator([
              'power' => PowerButton::class,

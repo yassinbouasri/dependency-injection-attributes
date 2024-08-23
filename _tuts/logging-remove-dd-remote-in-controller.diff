@@ -1,8 +1,8 @@
 diff --git a/src/Controller/RemoteController.php b/src/Controller/RemoteController.php
-index ba197a1..e3ee547 100644
+index 18d15db..4e28b3d 100644
 --- a/src/Controller/RemoteController.php
 +++ b/src/Controller/RemoteController.php
-@@ -18,8 +18,6 @@ final class RemoteController extends AbstractController
+@@ -15,8 +15,6 @@ final class RemoteController extends AbstractController
      #[Route('/', name: 'home', methods: ['GET', 'POST'])]
      public function index(Request $request, RemoteInterface $remote): Response
      {

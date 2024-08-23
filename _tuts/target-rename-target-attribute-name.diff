@@ -1,8 +1,8 @@
 diff --git a/src/Remote/LoggerRemote.php b/src/Remote/LoggerRemote.php
-index e13c840..8cf277a 100644
+index 4fceaf6..7e4a1c4 100644
 --- a/src/Remote/LoggerRemote.php
 +++ b/src/Remote/LoggerRemote.php
-@@ -15,7 +15,7 @@ final class LoggerRemote implements RemoteInterface
+@@ -12,7 +12,7 @@ final class LoggerRemote implements RemoteInterface
      public function __construct(
          private RemoteInterface $inner,
  

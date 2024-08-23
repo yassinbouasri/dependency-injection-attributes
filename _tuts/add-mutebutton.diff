@@ -12,19 +12,16 @@ index 0000000..bf2bf7e
 +</svg>
 diff --git a/src/Remote/Button/MuteButton.php b/src/Remote/Button/MuteButton.php
 new file mode 100644
-index 0000000..0a4ab09
+index 0000000..93e881c
 --- /dev/null
 +++ b/src/Remote/Button/MuteButton.php
-@@ -0,0 +1,17 @@
+@@ -0,0 +1,14 @@
 +<?php
 +
 +namespace App\Remote\Button;
 +
 +use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
 +
-+/**
-+ * @author Kevin Bond <kevinbond@gmail.com>
-+ */
 +#[AsTaggedItem('mute')]
 +final class MuteButton implements ButtonInterface
 +{

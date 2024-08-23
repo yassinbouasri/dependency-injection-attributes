@@ -1,5 +1,5 @@
 diff --git a/src/Controller/RemoteController.php b/src/Controller/RemoteController.php
-index f193ed9..2d5e8cc 100644
+index 4e1810f..1bfaa01 100644
 --- a/src/Controller/RemoteController.php
 +++ b/src/Controller/RemoteController.php
 @@ -9,6 +9,7 @@ use Psr\Container\NotFoundExceptionInterface;
@@ -10,7 +10,7 @@ index f193ed9..2d5e8cc 100644
  use Symfony\Component\DependencyInjection\Attribute\AutowireServiceClosure;
  use Symfony\Component\HttpFoundation\Request;
  use Symfony\Component\HttpFoundation\Response;
-@@ -60,7 +61,7 @@ final class RemoteController extends AbstractController
+@@ -57,7 +58,7 @@ final class RemoteController extends AbstractController
       */
      #[Route('/buttons', name: 'buttons')]
      public function buttons(

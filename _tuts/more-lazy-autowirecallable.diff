@@ -1,5 +1,5 @@
 diff --git a/src/Controller/RemoteController.php b/src/Controller/RemoteController.php
-index 758d6ca..f193ed9 100644
+index fb0f9fd..4e1810f 100644
 --- a/src/Controller/RemoteController.php
 +++ b/src/Controller/RemoteController.php
 @@ -8,6 +8,7 @@ use App\Remote\RemoteInterface;
@@ -10,7 +10,7 @@ index 758d6ca..f193ed9 100644
  use Symfony\Component\DependencyInjection\Attribute\AutowireServiceClosure;
  use Symfony\Component\HttpFoundation\Request;
  use Symfony\Component\HttpFoundation\Response;
-@@ -55,18 +56,18 @@ final class RemoteController extends AbstractController
+@@ -52,18 +53,18 @@ final class RemoteController extends AbstractController
      }
  
      /**

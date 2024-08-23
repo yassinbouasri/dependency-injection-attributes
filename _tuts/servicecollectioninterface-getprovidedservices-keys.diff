@@ -1,8 +1,8 @@
 diff --git a/src/Remote/ButtonRemote.php b/src/Remote/ButtonRemote.php
-index 4ce8faa..a97dfd6 100644
+index 1abe26b..c6f3652 100644
 --- a/src/Remote/ButtonRemote.php
 +++ b/src/Remote/ButtonRemote.php
-@@ -27,8 +27,6 @@ final class ButtonRemote
+@@ -24,8 +24,6 @@ final class ButtonRemote
       */
      public function buttons(): iterable
      {

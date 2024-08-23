@@ -11,10 +11,10 @@ index 9db7d8a..7acea8c 100644
  when@dev:
      monolog:
 diff --git a/src/Remote/LoggerRemote.php b/src/Remote/LoggerRemote.php
-index 75e2cf8..85255d9 100644
+index 18ce5d0..8d69979 100644
 --- a/src/Remote/LoggerRemote.php
 +++ b/src/Remote/LoggerRemote.php
-@@ -13,17 +13,17 @@ final class LoggerRemote implements RemoteInterface
+@@ -10,17 +10,17 @@ final class LoggerRemote implements RemoteInterface
  {
      public function __construct(
          private RemoteInterface $inner,

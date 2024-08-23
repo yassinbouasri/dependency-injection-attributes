@@ -10,19 +10,16 @@ index 0000000..4b539d6
 +</svg>
 diff --git a/src/Remote/Button/DiagnosticsButton.php b/src/Remote/Button/DiagnosticsButton.php
 new file mode 100644
-index 0000000..6df811d
+index 0000000..b64698e
 --- /dev/null
 +++ b/src/Remote/Button/DiagnosticsButton.php
-@@ -0,0 +1,17 @@
+@@ -0,0 +1,14 @@
 +<?php
 +
 +namespace App\Remote\Button;
 +
 +use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
 +
-+/**
-+ * @author Kevin Bond <kevinbond@gmail.com>
-+ */
 +#[AsTaggedItem('diagnostics')]
 +final class DiagnosticsButton implements ButtonInterface
 +{

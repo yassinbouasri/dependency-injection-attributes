@@ -1,18 +1,15 @@
 diff --git a/src/Remote/LoggerRemote.php b/src/Remote/LoggerRemote.php
 new file mode 100644
-index 0000000..cc7ebba
+index 0000000..3bd30ef
 --- /dev/null
 +++ b/src/Remote/LoggerRemote.php
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,28 @@
 +<?php
 +
 +namespace App\Remote;
 +
 +use Psr\Log\LoggerInterface;
 +
-+/**
-+ * @author Kevin Bond <kevinbond@gmail.com>
-+ */
 +final class LoggerRemote implements RemoteInterface
 +{
 +    public function __construct(
