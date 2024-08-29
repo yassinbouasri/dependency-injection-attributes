@@ -4,7 +4,8 @@ chapters:
   - simplify-with-autoconfiguretag
   - list-buttons-with-autowireiterator
   - locator-and-iterator
-  - asalias-and-asdecorator
+  - asalias
+  - asdecorator
   - target
   - when-and-exclude
   - lazy

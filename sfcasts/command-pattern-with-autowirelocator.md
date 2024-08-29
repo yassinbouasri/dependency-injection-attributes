@@ -1,4 +1,4 @@
-# Command Pattern with `#[AutowireLocator]`
+# Command Pattern with AutowireLocator
 
 Okay, let's get started. So looking at our app, this is our remote UI. It’s basically just a form, and each button
 on the submits the form. Each button's `name` attribute is unique so our controller can determine which

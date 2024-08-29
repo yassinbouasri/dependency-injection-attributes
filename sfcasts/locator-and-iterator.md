@@ -1,4 +1,4 @@
-# Locator and Iterator with `ServiceCollectionInterface`
+# Container and Iterator with ServiceCollectionInterface
 
 All right, so in the last chapter, we added these buttons programmatically from our remote, but we broke the functionality
 of actually pressing the buttons because we are no longer injecting a container.

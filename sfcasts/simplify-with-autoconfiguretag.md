@@ -1,4 +1,4 @@
-# Simplify with `#[AutoconfigureTag]` and `#[AsTaggedItem]`
+# Simplify with AutoconfigureTag and AsTaggedItem
 
 Okay, welcome back. So in the last chapter, we refactored the big switch statement that
 we had in our controller to this little try-catch. Our remote works the same way it did

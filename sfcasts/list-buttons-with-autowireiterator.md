@@ -1,4 +1,4 @@
-# List buttons with `#[AutowireIterator]`
+# List Buttons with AutowireIterator
 
 Okay, now that we've successfully refactored our app to use our controller to
 use the command pattern for executing the buttons, let's look at how we can

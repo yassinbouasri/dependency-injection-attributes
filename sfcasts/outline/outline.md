@@ -9,7 +9,7 @@
 - https://symfony.com/doc/current/reference/attributes.html#dependency-injection
     - `#[Autowire]` already covered in SF7 EP2
 
-## Command Pattern with `#[AutowireLocator]`
+## Command Pattern with AutowireLocator
 
 - Previously called `#[TaggedLocator]`
 - Create `ButtonInterface`
@@ -17,7 +17,7 @@
 - Use array with AutowireLocator to inject directly in constructor
 - Not ideal, each time we add a button, we need to update the attribute array
 
-## Simplify with `#[AutoconfigureTag]` and `#[AsTaggedItem]`
+## Simplify with AutoconfigureTag and AsTaggedItem
 
 - add to ButtonInterface
 - replace AutowireLocator array with interface name
@@ -25,7 +25,7 @@
 - add AsTaggedItem to each button with service id
 - working again!
 
-## List buttons with `#[AutowireIterator]`
+## List Buttons with AutowireIterator
 
 - Let's remove the need to update our template each time we add a button
 - Previously called `#[TaggedIterator]`
@@ -34,7 +34,7 @@
 - Use `AsTaggedItem::$priority` to adjust order
 - Pressing buttons is now broken!
 
-## Locator and Iterator with `ServiceCollectionInterface`
+## Container and Iterator with ServiceCollectionInterface
 
 - We could add two ButtonRemote constructor but there's a better way
 - Switch back to `AutowireLocator` attribute
@@ -43,20 +43,23 @@
 - Utilize `array_keys(ServiceCollectionInterface::getProvidedServices())` to lazily list the buttons
 - Added and utilized in Symfony 7.1
 
-## `#[AsAlias]` and `#[AsDecorator]`
+## Alias an Interface with AsAlias
 
-- create RemoteInterface and have ButtonRemote implement
+- create `RemoteInterface` and have `ButtonRemote` implement
 - use interface in controller
 - ensure works as normal
 - Add `LoggerRemote` and implement interface
 - Broken - Symfony doesn't know what concrete object that implements interface to use
 - Add AsAlias to ButtonRemote
 - Logging not working yet...
+
+## Decorate a Service with AsDecorator
+
 - use AsDecorator on LoggerRemote
 - Logging works!
 - Mention `AutowireDecorated`
 
-## `#[Target]`
+## Enforce Named Autowiring with Target
 
 - add custom button logging channel
 - show debug:autowiring output with buttonLogger
@@ -71,7 +74,7 @@
 - edit the Target argument
 - works again!
 
-## `#[When]` and `#[Exclude]`
+## Enable Services in Specific Environments with When
 
 - add a diagnostics button
 - we only want available in development
@@ -79,7 +82,7 @@
 - to show that it works, temporarily change When env to `prod` and show that it disappears
 - Mention `Exclude`
 
-## `#[Lazy]`
+## Lazy Services
 
 - describe lazy services...
 - add Lazy to `OnButton`
