@@ -46,9 +46,39 @@ What we need is to just get the array keys of this and return them. So, let's ju
 By calling `getProvidedServices`, we're no longer instantiating all the services just to get the keys, which greatly
 improves the performance, especially in larger apps.
 
-So now, let's go back to our browser and refresh. Everything is back working as expected. One note about this
-`ServiceCollectionInterface`—if you look inside, if you jump in, it’s in the Symfony con—I'm not going to talk about
-this.
+So now, let's go back to our browser and refresh. Everything is back working as expected.
+
+All right, so to be doubly sure that all this is working as expected, let's add a
+new button to our remote. And remember, all we should need to do is... All we should
+need to do for our remote to pick it up is now add a new button implementation.
+
+So we'll add a new PHP class and we'll call this one a mute button. And we'll
+implement `ButtonInterface`. Then we'll do option-enter and control-enter to
+implement methods. We'll implement `press`. And for this, we're just going to dump
+"mute button pressed".
+
+Now, if you'll remember from our other buttons, we need to add this `AsTaggedItem`
+attribute. Again, we're just in our `MuteButton` class. We don't have to go anywhere
+else. So we'll add this `AsTaggedItem` and we will set the index to mute. We are
+going to leave the priority as the default, which is priority zero, because all of
+our other buttons are a higher priority.
+
+So this one should just slot in below the existing ones. And now if we go to... If
+you remember, there's one other thing we have to do. Each button has an SVG icon
+that's included in `assets/icons`. So if you go to our tutorial directory and just
+copy the mute button up into icons, it's already created for us.
+
+So that's the last thing we need to do. So remember, when we're adding a new button,
+we need to create a service that implements `ButtonInterface`, add an `AsTaggedItem`
+with the name of the button, and then add our SVG to our `assets/icons/` directory. The template
+will render it correctly.
+
+Now, if we go to our app and refresh, there it is. We have our button automatically
+added to our remote. And then if we click it, it prints "mute pressed". We'll check
+our profiler: mute button pressed coming from the mute button service that we just
+created.
+
+So perfect. It's working as we expect.
 
 OK, and that's it! Our app is now fully refactored, performant, and using the command pattern. We're able to list our
 buttons programmatically, and it’s all done in the most performant way possible.
