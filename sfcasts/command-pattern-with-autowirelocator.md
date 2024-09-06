@@ -1,4 +1,4 @@
-# Command Pattern with `#[AutowireLocator]`
+# Command Pattern with AutowireLocator
 
 Let's *do this*! If we take a look at our app, *this* is the UI for our remote. It’s basically just a form, and each button *submits* the form. The `name` attribute for each button is unique, and that helps our controller determine which button's logic to execute. When we click the "Power" button, for example, we see this flash message (added by the controller) that tells us what happened. If we press "Channel Up", "Channel Down", and so on, we see the same corresponding messages.
 
