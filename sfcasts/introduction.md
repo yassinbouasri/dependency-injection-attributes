@@ -5,13 +5,13 @@ Hey friends! Welcome to a brand new course that's all about *Dependency Injectio
 A long time ago, in a Symfony version far, far away, *services* (which are objects that do work) had to be configured in separate YAML or XML files. The cool kids called it "wiring up a service". *In* these files, we'd create a service ID, reference our service class, and *then* reference any service IDs, parameters, or scalar values that were required. While this worked great, it *was* a bit cumbersome. Anytime we needed to add, delete, or modify a service's arguments, we'd have to jump into *another* configuration file and update *that* as well. *Surely* we could find a better way to do that, right? You bet!
 
 In a *subsequent* version of Symfony, *still* long ago, they added something called "autowiring". This allowed us to just create a PHP service *object*, and *any* other services required would be injected *automatically*. We just
-needed to type in the service class or interface. While this was a *huge* step forward, we *still* had to configure this in YAML or XML, even in only *slightly* more advanced scenarios (like scalar arguments from a parameter). It definitely *reduced* the amount of time spent in configuration files, but it didn't *eliminate* it.
+needed to type-hint the service class or interface. While this was a *huge* step forward, we *still* had to configure this in YAML or XML, even in only *slightly* more advanced scenarios (like scalar arguments from a parameter). It definitely *reduced* the amount of time spent in configuration files, but it didn't *eliminate* it.
 
 *Then* PHP 8 came along and added native attributes, metadata that can be added to class properties, methods, method arguments, and *more*. This was the perfect feature to enable us to do *all* of the configuration right in our service classes. With Symfony 7.1 - the version we'll use in this course - there's a *plethora* of DI attributes to use, and we'll take a look at each of them. We'll see that editing a separate configuration file is only necessary in rare, super advanced scenarios. For the most part, the `services.yaml` file, which is included in every new Symfony app, is all we'll ever need, and it will hardly ever change. We'll showcase *all* of these attributes in a fun little app so you can see how they work.
 
 So here's the scenario: We have a smart TV, but we've lost the remote. We searched *everywhere*, but it's nowhere to be found. I bet those pesky remote gnomes took it to sell on "Gnomeslist"...
 
-We found a replacement remote online, but it's backordered and it'll take *forever* to get here. What do we do? Well, while we were looking for a solution on "RemoteOverflow", a user (who is definitely *not* a gnome) told us about an API that exists for our smart TV. As web developers, we can use that API to create our *own* remote we can access and use on any tablet connected to our home network. Thank goodness the gnomes didn't steal our tablet, right? Right..?
+We found a replacement remote online, but it's backordered and it'll take *forever* to get here. What do we do? Well, while we were looking for a solution on "RemoteOverflow.com", a user (who is definitely *not* a gnome) told us about an API that exists for our smart TV. As web developers, we can use that API to create our *own* remote we can access and use on any tablet connected to our home network. Thank goodness the gnomes didn't steal our tablet, right? Right..?
 
 To code along with me, download the course code for this video, open it in your IDE of choice, and follow the setup steps in the `README.md` file. I've already done that. Now we can spin over to our terminal and run
 
@@ -24,7 +24,7 @@ It does all the usual remote things like changing the channel, powering the TV o
 That's pretty much it for now. If we spin over 
 to the code, it's an almost out-of-the-box Symfony 7.1 app.
 
-We have a single controller, `RemoteController`, and single route, home.
+We have a single controller, `RemoteController`, and single route, `home`.
 This contoller handles rendering the UI and button clicks. When a button is clicked,
 we handle the different button logic (represented by a `dump()`), add the flash
 message, and redirect to the same route. If not handling a button click, we render
