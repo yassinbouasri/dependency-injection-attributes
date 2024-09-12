@@ -19,8 +19,53 @@ To code along with me, download the course code for this video, open it in your 
 symfony serve -d
 ```
 
-to run the server in the background. Hold "command" and click on the URL here to open our app in the browser, and... *there's* our remote! It does all of the usual remote things like changing the channel, powering the TV on and off, and increasing or decreasing the volume. If we go back to our code, we can see that it's a pretty straightforward Symfony app right out of the box, aside from a single controller and template I added.
+to run the server in the background. Hold "command" and click on the URL here to open our app in the browser, and... *there's* our remote!
+It does all the usual remote things like changing the channel, powering the TV on and off, and increasing or decreasing the volume.
+That's pretty much it for now. If we spin over 
+to the code, it's an almost out-of-the-box Symfony 7.1 app.
 
-Inside `RemoteController.php`, which represents our remote, all we do is check to see if a method is a `POST`. If it *is* a `POST`, that means a button was clicked. We check to see *which* button was clicked and, at the moment, instead of *actually* writing the logic to activate that specific button through our API, we're just using `dump()` so we can just see which button was pressed and know that this is wired up correctly. If a button is *not* found, this will create a 404. Each button click is followed by a flash message, and then we're redirected back to this exact same route - pretty standard Symfony code. If a button *wasn't* pressed or we've been redirected, this just renders an index page. And if we jump into *that* by holding "command" and clicking on it, we can see that this is a pretty typical template. We're just rendering the flash messages and each button of the controller here.
+We have a single controller, `RemoteController`, and single route, home.
+This contoller handles rendering the UI and button clicks. When a button is clicked,
+we handle the different button logic (represented by a `dump()`), add the flash
+message, and redirect to the same route. If not handling a button click, we render
+this `index.html.twig`, which is our remote template.
 
-Up next: We're going to look at our *first* dependency injection attribute - the *autowire locator* - to refactor this `switch()` statement into the command pattern.
+In our `templates/` directory, first take a look at `base.html.twig`. This comes
+from a standard Symfony install. The UI is styled using Tailwind CSS but I'm doing
+something a little different than you may be used to. Instead of installing an asset
+management system like AssetMapper or Webpack Encore, to keep things simple, I'm using
+the Tailwind CSS CDN. This injects a bit of javascript in your page that reads through
+all the Tailwind classes you are using in your HTML. This then builds a custom CSS
+file and injects it, styling your HTML. As you might imagine, this isn't terribly
+fast and should never be used in production. For prototyping and our purposes, it
+works great and is easy to get going!
+
+Now, if we take a look at `index.html.twig`, this is our actual remote template.
+It's mostly standard, you can see the Tailwind classes we're using. Here's where we
+are rendering our flash message, if one exists, and here are the actual buttons.
+They are wrapped in a `<form>` where each `<button>` submits the form with the
+name of the button that was clicked.
+
+The only thing that's a little non-standard is this `<twig:ux:icon ...>` tag.
+This is a combination of two third-party packages that are both part of the _Symfony
+UX Initiative_.
+
+First, we're using `symfony/ux-icons`. This package enables you to add `.svg` files
+to this `assets/icons` directory. Now, you can embed these SVGs in Twig using the
+filename (minus the `.svg`) as the `name` attribute in this tag. You can also add
+additional attributes like we have here, `height`, `width`, `class`, etc. These
+will be added to the embedded `<svg>` element. This package does some other
+awesome things, so google "Symfony UX Icons" to learn more about it!
+
+The other part of this `<twig:ux:icons ...>` tag is the tag itself. This comes from
+the `symfony/ux-twig-component` package. At its core, it's basically a more advanced
+Twig `{{ include() }}` tag, allowing you to pass HTML attributes like `class` to
+_components_. An optional feature it provides is this HTML syntax. If you're familiar
+with components in frontend frameworks like Vue.js, this is kind of a Twig version of this.
+The UX Icon package hooks into Twig Components and gives us a handy `UX:Icon` component
+that we can render with `<twig:ux:icon...`. I think using this makes our template read
+nicer! To learn more about Twig Components (and it does _a lot_ more cool things), google
+"Symfony Twig Components" and checkout the documentation!
+
+All right, so this is where we'll start. Next: we will start actually refactoring 
+this app to use dependency injection attributes!
