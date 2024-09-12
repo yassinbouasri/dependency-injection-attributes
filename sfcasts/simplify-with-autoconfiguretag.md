@@ -2,7 +2,7 @@
 
 Welcome back! In the last chapter, we refactored the big `switch` statement in our controller to this little try-catch. Our remote works the same way it did before, but now we're using the *Command pattern*. We also used this `AutowireLocator` attribute to tell Symfony how to wire up this container. This is *great*, but what if I told you we could simplify this *even* more?
 
-Since all of our buttons implement this `ButtonInterface`, we'll add a *second* dependency injection attribute: `#[AutoconfigureTag]`. This will add a tag to all of the services that implement `ButtonInterface`. This attribute tells Symfony:
+Since all of our buttons implement this `ButtonInterface`, we'll add our *second* dependency injection attribute: `#[AutoconfigureTag]`. This will add a tag to all of the services that implement `ButtonInterface`. This attribute tells Symfony:
 
 `Hey, add a tag to any service that implements this interface!`
 
@@ -24,7 +24,7 @@ We want the `index` to be the *slug* name of our buttons. To do this, we'll use 
 
 Let's start with the `ChannelDownButton`. Add `#[AsTaggedItem]` to the class... and for the *first* argument, which is the index, we'll write `channel-down`. We'll do the same thing in `ChannelUpButton`... `PowerButton`... `VolumeDownButton`... and `VolumeUpButton`.
 
-All right, spin back over to your browser... refresh the page... press a button, and... *it works*! If we look at the profile, we can see that it's dumping the correct message for the button.
+All right, spin back over to your browser... refresh the page... press a button, and... *it works*! If we look at the profiler, we can see that it's dumping the correct message for the button.
 
 So now, whenever we want to add a *new* button, we just need to create the button class, have it *implement* the `ButtonInterface`, and add the `#[AsTaggedItem]` attribute with a unique button name.
 
