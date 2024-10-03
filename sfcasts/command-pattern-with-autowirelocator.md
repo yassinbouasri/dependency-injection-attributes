@@ -8,7 +8,12 @@ Over in our code, open up `src/Controller`, find `RemoteController` and... here 
 
 Finally, at the bottom, if the request *isn’t* a `POST`, we just render `index.html.twig`. That's our remote template. When you have a big switch-case statement like this, it's usually a good opportunity to refactor, especially as we add more buttons and logic. A great way to do this is with the Command pattern. If you'd like a more in-depth look at this pattern, check out our "Design Patterns" course!
 
-Okay, the first thing we’re going to do is create some commands, which will represent the buttons and house all of their logic. In `src/`, let's create a new directory to better organize our code. We’ll call it `Remote` and, inside, create another folder called `Button`. Perfect! Next, we need create a new PHP class for each button. We'll start by creating an *interface* that each button will implement so our command handler can *predictably* handle them. We’ll call it `ButtonInterface` and, right here, we can see that PHPStorm will *automatically* create an interface for us. Inside, we’ll write `public function press()`, which will have *no* arguments and return `void`.
+Okay, the first thing we’re going to do is create some commands, which will represent the buttons and house all of their logic. In `src/`, let's create a new directory to better organize our code. We’ll call it `Remote` and, inside, create another folder called `Button`. Perfect! Next, we need create a new PHP class for each button.
+We'll start by creating an *interface* that each button will implement so our command handler can *predictably* handle them.
+We’ll call it `ButtonInterface` and, right here, we can see that PHPStorm will *automatically* create an interface for us.
+Inside, we’ll write `public function press()`, which will have *no* arguments and return `void`.
+
+[[[ code('7cdd99831b') ]]]
 
 In the `tutorial/` directory... look at that! All of the button implementations are here and ready to go! We just need to copy all of the PHP files and add them to the `Button` directory. *Easy peasy*! If we look at `ChannelDownButton.php`, we can see that it has the `press()` method implemented and the same `dump()` that we saw in our controller, along with the button message.
 
