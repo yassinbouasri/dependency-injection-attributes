@@ -2,7 +2,7 @@
 
 Let's *do this*! If we take a look at our app, *this* is the UI for our remote. It’s basically just a form, and each button *submits* the form. The `name` attribute for each button is unique, and that helps our controller determine which button's logic to execute. When we click the "Power" button, for example, we see this flash message (added by the controller) that tells us what happened. If we press "Channel Up", "Channel Down", and so on, we see the same corresponding messages.
 
-So this is *super* simple. The form just posts to the same page, handles the button logic, and then redirects us back with the flash message. If we click here, we can hop into in the profiler to see the `POST` request. This `dump()` represents the button logic, and shows the last button we clicked was the "Channel Down" button. That checks out!
+So this is *super* simple. The form just posts to the same page, handles the button logic, and then redirects us back with the flash message.
 
 Over in our code, open up `src/Controller`, find `RemoteController` and... here we go! We’re checking to see if the request is a `POST`, and since each button *submits* with a name, this `switch()` statement grabs that from the request. Each button is wrapped in a `case`, and each `dump()` represents the button's individual logic. If a button *isn't* found, this will throw a 404. *Then* we add the flash message, do a bit of string manipulation to make the button name look nicer, and redirect right back to the same route.
 
