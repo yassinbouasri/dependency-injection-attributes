@@ -10,7 +10,7 @@ Finally, at the bottom, if the request *isn’t* a `POST`, we just render `index
 
 Okay, the first thing we’re going to do is create some commands, which will represent the buttons and house all of their logic. In `src/`, let's create a new directory to better organize our code. We’ll call it `Remote` and, inside, create another folder called `Button`. Perfect! Next, we need create a new PHP class for each button.
 We'll start by creating an *interface* that each button will implement so our command handler can *predictably* handle them.
-We’ll call it `ButtonInterface` and, right here, we can see that PHPStorm will *automatically* create an interface for us.
+We’ll call it `ButtonInterface`.
 Inside, we’ll write `public function press()`, which will have *no* arguments and return `void`.
 
 [[[ code('7cdd99831b') ]]]
