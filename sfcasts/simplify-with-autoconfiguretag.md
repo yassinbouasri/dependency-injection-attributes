@@ -28,28 +28,19 @@ and... *error*.
 
 > Button "power" not found.
 
-Let's scroll down and see if we can find the previous exception. Ah, here it is!
+Scroll down to see the exception details. Ah, here it is!
 This "not found" exception was thrown from the `press()` method because it
-couldn't find "power" in `ButtonRemote`'s container. *Luckily*, it shows us the
+couldn't find "power" in `ButtonRemote`'s container. *Luckily*, the previous exception
+details shows us the
 service IDs it *did* find - the *full class names* of our buttons. So they *are*
 being wired up, but not by the ID we need.
 
-## Anatomy of a Service Tag
+We want the service ID's of our container to be the *slug* names of our buttons. To
+do this, we'll use our next dependency injection attribute: `#[AsTaggedItem]`.
+Putting this on the implementations of `ButtonInterface` allows us to customize
+the service ID.
 
-Like we said earlier, a service tag is just a *string*, but it can also have an
-*optional* set of attributes. These attributes can be *anything*, but there are
-a few *select* attributes Symfony uses. One of those is `index`. When Symfony
-wires up a container with a tag, it will use the `index` attribute as the ID of
-the service. If no `index` is provided, the service ID will be the fully
-qualified class name of the service. *That's* what this exception message is
-telling us.
-
-We want the `index` to be the *slug* name of our buttons. To do this, we'll use
-our *third* dependency injection attribute: `#[AsTaggedItem]`. Putting this on
-the *implementations* of `ButtonInterface` allows us to customize the `index`
-attribute.
-
-Let's start with the `ChannelDownButton`. Add `#[AsTaggedItem]` to the class...
+Start with the `ChannelDownButton`. Add `#[AsTaggedItem]` to the class...
 and for the *first* argument, which is the index, we'll write `channel-down`.
 We'll do the same thing
 in `ChannelUpButton`... `PowerButton`... `VolumeDownButton`...
