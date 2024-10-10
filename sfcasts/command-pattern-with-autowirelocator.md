@@ -75,7 +75,7 @@ similar: `'channel-down' => ChannelDownButton::class`, `'volume-up' => VolumeUpB
 and `'volume-down' => VolumeDownButton::class`. Ta-da! Our command handler is
 ready! 
 
-[[[ code('99d8c3696b') ]]]
+[[[ code('91a0f69297') ]]]
 
 Now we need to replace the big switch-case statement in our controller
 with *this*.
