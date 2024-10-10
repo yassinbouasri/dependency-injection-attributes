@@ -2,7 +2,7 @@ chapters:
   - introduction
   - command-pattern-with-autowirelocator
   - simplify-with-autoconfiguretag
-  - list-buttons-with-autowireiterator
+  - autowireiterator
   - locator-and-iterator
   - asalias
   - asdecorator
