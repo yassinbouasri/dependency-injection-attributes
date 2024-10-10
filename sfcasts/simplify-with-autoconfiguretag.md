@@ -1,17 +1,16 @@
 # Simplify with AutoconfigureTag and AsTaggedItem
 
-Welcome back! In the last chapter, we refactored the big `switch` statement in
+In the last chapter, we refactored the big `switch` statement in
 our controller to this little try-catch. Our remote works the same way it did
 before, but now we're using the *Command pattern*. We also used
 this `AutowireLocator` attribute to tell Symfony how to wire up this container.
 This is *great*, but what if I told you we could simplify this *even* more?
 
 Since all of our buttons implement this `ButtonInterface`, we'll add our
-*second* dependency injection attribute: `#[AutoconfigureTag]`. This will add a
-tag to all of the services that implement `ButtonInterface`. This attribute
+*second* dependency injection attribute: `#[AutoconfigureTag]`. This attribute
 tells Symfony:
 
-`Hey, add a tag to any service that implements this interface!`
+> Hey, add a tag to any service that implements this interface!
 
 A *tag* is just a string that's connected to a service, and by *itself*, it
 doesn't really *do* anything. *But*, now that our services have this tag, we can
@@ -55,7 +54,5 @@ the `#[AsTaggedItem]` attribute with a unique button name.
 
 If we want this to show up in our remote UI, we *still* need to add it to our
 template. But what if we could do *even* better? What if we didn't have to edit
-this file *every* time we add a new button? The `ButtonRemote` knows all of our
-button names, so we'll add a method to *list* them. Then, in our template, we'll
-loop over *each* of them and render the buttons. To do *that*, we need to use
+this file *every* time we add a new button? To do *that*, we need to use
 *another* dependency injection attribute. *That's next*.
