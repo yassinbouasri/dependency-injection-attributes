@@ -1,108 +1,96 @@
 # List Buttons with AutowireIterator
 
-Now that we've successfully refactored our app with a controller that uses the
-Command pattern to execute buttons, let's look at how we can change this
-UI from hard-coded buttons to something more *dynamic*. As we add new
-button classes, I'd like to not have to edit our template.
+We've refactored our app to use the
+Command pattern to execute each button. Great! New goal: make the buttons more
+dynamic: as we add new button classes, I'd like to *not* have to edit our template.
 
-The first thing we need to do is open our `ButtonRemote` class. We need to list
-*all* of our button names - the indexes from our container. The best way to do this is to
+Start inside `ButtonRemote`. We need to way to get a list of
+*all* the button names: the indexes from our container. To do that,
 create a `public` method here called `buttons()`, which will return an `array`.
-Above, we'll add some documentation showing that this is an array of
-strings. These are going to be our button names.
+This will be an array of strings: our button names!
 
-This container is great for fetching services, but it can't
-iterate over the concrete buttons inside. To fix that, we need to
-change `#[AutowireLocator]` to a new attribute called `#[AutowireIterator]`.
-When we do this, we're telling it to inject a list of our services, so this will no longer
-be a container interface. That means we can just typehint `iterable` and rename
-this container to `$buttons` here... and here. Nice!
+The mini-container is great for fetching individual services. But you can't
+loop over *all* the button services inside. To fix that,
+change `#[AutowireLocator]` to `#[AutowireIterator]`.
+This tells Symfony it to inject an *iterable* of our services, so this will no longer
+be a `ContainerInterface`. Instead, used `iterable` and rename
+`$container` to `$buttons` here... and here. Nice!
 
-Now, down here, we're going to loop over the buttons with a `foreach`, so
-write `foreach ($this->buttons as $name => $button)`. `$button` is the actual service.
-We're going to ignore that *completely* and just grab the `$name`, and add it to
-this `$buttons` array. Then, down here, `return $buttons`.
+Now, below, loop over the buttons:
+`foreach ($this->buttons as $name => $button)`. `$button` is the actual service,
+but we're going to ignore that *completely* and just grab the `$name`, and add it to
+this `$buttons` array. At the bottom, `return $buttons`.
 
-Back in our controller, we're *already* injecting the `ButtonRemote`, so down
-here where we render the template, inject the buttons
-with `'buttons' => $remote->buttons()`. To see what this is going to return,
-we'll add a `dd()` here.
+Back in the controller, we're *already* injecting `ButtonRemote`, so down
+where we render the template, pass a new `buttons` variable
+with `'buttons' => $remote->buttons()`. Add a `dd()` to see what it returns.
 
-Okay, back at our browser, refresh the page and... hm... we're not seeing what
-we want to see here. This is just a list of numbers, but we *want* this to be
+Okay, back at the browser, refresh the page and... hm... that's not quite what
+we want. Instead of a list of numbers, we want
 a list of button *names*. To fix this, back in `ButtonRemote`,
-find `#[AutowireIterator]`. The `#[AutowireLocator]` automatically uses the `$index`
-property from the `#[AsTaggedItem]` attribute but
-for `#[AutowireIterator]`, when it injects this `iterable`, it's just a list of
-services (keyed by integers).
+find `#[AutowireIterator]`. `#[AutowireLocator]`, the attribute we had before,
+automatically uses the `$index`
+property from `#[AsTaggedItem]` for the service keys.
+`#[AutowireIterator]` does not! It just gives us an iterable with *index* keys.
 
-We need to tell it to use `#[AsTaggedItem]`'s `$index` as the _key_, so in our
-`#[AutowireIterator]`, add another parameter called `indexAttribute`. This will
-be `key`. Now, when we loop over `$this->buttons`, `$name` will be the `$index`
+To tell it to key the iterable using `#[AsTaggedItem]`'s `$index`, add
+`indexAttribute` set to
+`key`. Now, when we loop over `$this->buttons`, `$name` will be the `$index`
 which in our case, is the button name.
 
 Over in our controller, we still have this `dd()` so, back in our app, refresh
-and... there we go! We have the actual button names now! We can loop over
-them in our template and render each button programmatically. Pretty cool!
+and... there we go! We have the button names now! Pretty cool!
 
-Go ahead and remove this `dd()`.
+Remove the `dd()`, then open
+`index.html.twig`. Right here, we have a hardcoded list of buttons.
+Add some space, and then
+`for button in buttons`.
 
-Back in our editor, open `index.html.twig`. Right here, you can see we're
-creating an unordered list. That's where each button lives right now. To avoid
-hard-coding them like this, we're going to loop over the buttons that we're
-passing to our template. *Then* we're going to
-grab the buttons in our template. Add some space here, and then
-write a for-each loop: `for button in buttons`.
+In the UI, you probably noticed that the *first* button - the "Power"
+button - looks a different: it's red & larger. To keep
+that special styling,
+add a `if loop.first` here, an `else` then the rest of the buttons.
 
-In our UI, you may have noticed that the *first* button - the "Power"
-button - looks a little different. It's red and larger than the others. To keep
-it the way it is, with the first button being different, we'll utilize a special
-Twig variable called `loop`. Specifically, `loop.first` which is `true` if it's
-the first iteration of this `foreach`. So let's add an `if loop.first` here.
-Below, we'll add an `else` for the rest of the buttons.
+Copy the code for the first button and paste it here. Instead of
+hard-coding "power" as the button's value, render the `button` variable.
+Same for the Twig icon's name.
 
-We'll copy the _code_ for the first button and _paste_ it here. Instead of
-hard-coding "power" as the button's value, we'll render the `button` variable here.
-Same for the Twig icon's name. 
+For the rest of the buttons, copy the first button's code, paste, then replace
+the button's `value` attribute
+and icon name with the `button` variable.
 
-For the rest of the buttons, we'll _copy_ the first standard button's code and _paste_
-it here. As we did for the first button, replace the button's _value_ attribute
-and the icon's _name_ with the `button` variable.
+*Nice*. Celebrate by deleting the rest of the hard-coded buttons.
 
-*Nice*. Now we can delete the rest of the hard-coded buttons.
-
-That simplifies our template *quite a bit*. If we spin back over to our app and
+Let's try it! Spin back over to our app and
 refresh... hm... It's rendering the buttons, but they're not in the right order.
 We want this one at the top. So... what do we do?
 
-We need to *enforce* the order our buttons are injected into the iterator. To do
-that, open `PowerButton.php`. In `#[AsTaggedItem]`, there's another argument
-we can use called `priority`. That will enable us to *order* the iterator's services.
+We need to *enforce* the order of our buttons in the iterator. To do
+that, open `PowerButton`. In `#[AsTaggedItem]`, add
+`priority`.
 
-When we were using `#[AutowireLocator]`, this wasn't important because we were just
-fetching services by their index. But as soon as we start iterating *over* things, we may want to
-control the order. Add `priority` and set it to `50`, because a higher priority
-means it will move up the chain. We're assigning a priority of `50` for the "Power"
-button because we want it to be first. Now we can go to the "Channel Up"
+Before, with `#[AutowireLocator]`, this wasn't important because we were just
+fetching services by their name. But now that we *do* care about
+the order, add `priority` and set it to, how about, `50`.
+Now we go to the "Channel Up"
 button and add a priority of `40`, the "Channel Down" button, a priority
 of `30`, "Volume Up" a priority of `20`, and "Volume Down", a priority of `10`.
 
 Any button *without* an assigned priority has a default priority of `0` and
 no guarantee of order.
 
-If we head back to our app and refresh... *all right*! We're back in business! All
-of our the buttons are being added *programmatically* to our template in the proper
+Head back to our app and refresh... *all right*! We're back in business! All
+the buttons added *automatically* and in the right
 order.
 
-*But* you may have noticed we have a *tiny* problem here. Let's *press* a
+*But* you may have noticed we have a *tiny* problem. Press any
 button and... Error!
 
 > Attempted to call an undefined method "get" of class
-> "Symfony\Component\DependencyInjection\Argument\RewindableGenerator".
+> `RewindableGenerator`.
 
-This `RewindableGenerator` is a special iterator Symfony injects when using `#[AutowireIterator]`.
-The *problem* originated when we
-refactored to use `#[AutowireIterator]`. We no longer have that container, so
-it's calling `get()` on something that doesn't have a `get()` method.
+This `RewindableGenerator` is the iterable object Symfony injects with `#[AutowireIterator]`.
+We can loop over this, but it does *not* have a `get()` method. Boo!
 
-Next, let's fix this and get our remote working again.
+Next, let's fix this by also injecting a service locator via,
+of course, another fancy attribute!
