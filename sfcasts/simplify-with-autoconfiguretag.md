@@ -7,15 +7,20 @@ this `AutowireLocator` attribute to tell Symfony how to wire up this container.
 This is *great*, but what if I told you we could simplify this *even* more?
 
 Since all of our buttons implement this `ButtonInterface`, we'll add our
-*second* dependency injection attribute: `#[AutoconfigureTag]`. This attribute
-tells Symfony:
+*second* dependency injection attribute: `#[AutoconfigureTag]`:
+
+[[[ code('032131c063') ]]]
+
+This attribute tells Symfony:
 
 > Hey, add a tag to any service that implements this interface!
 
 A *tag* is just a string that's connected to a service, and by *itself*, it
 doesn't really *do* anything. *But*, now that our services have this tag, we can
 replace the manual service mapping we use in `ButtonRemote`'s
-`#[AutowireLocator]` attribute with the tag name.
+`#[AutowireLocator]` attribute with the tag name:
+
+[[[ code('5c5e7e0928') ]]]
 
 When you use the `#[AutoconfigureTag]` attribute, you can customize the tag
 name. If you choose not to, the interface name will be used by default. We'll
@@ -40,9 +45,20 @@ the service ID.
 
 Start with the `ChannelDownButton`. Add `#[AsTaggedItem]` to the class...
 and for the *first* argument, which is the index, we'll write `channel-down`.
+
+[[[ code('291ef9a2e5') ]]]
+
 We'll do the same thing
 in `ChannelUpButton`... `PowerButton`... `VolumeDownButton`...
 and `VolumeUpButton`.
+
+[[[ code('5398795d6d') ]]]
+
+[[[ code('415c444e7a') ]]]
+
+[[[ code('a470d3c1c2') ]]]
+
+[[[ code('d36901385b') ]]]
 
 All right, spin back over to your browser... refresh the page... press a button,
 and... *it works*! If we look at the profiler, we can see that it's dumping the
