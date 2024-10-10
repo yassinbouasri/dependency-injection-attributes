@@ -20,8 +20,7 @@ replace the manual service mapping we use in `ButtonRemote`'s
 
 When you use the `#[AutoconfigureTag]` attribute, you can customize the tag
 name. If you choose not to, the interface name will be used by default. We'll
-just stick with the default name because the name isn't super important, so
-remove this array and replace it with `ButtonInterface::class`.
+just stick with the default name because the name isn't super important.
 
 Okay, back in our browser, let's see if everything still works. Press a button
 and... *error*.
