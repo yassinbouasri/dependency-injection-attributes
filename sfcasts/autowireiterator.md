@@ -9,6 +9,8 @@ Start inside `ButtonRemote`. We need a way to get a list of
 create a `public` method here called `buttons()`, which will return an `array`.
 This will be an array of strings: our button names!
 
+[[[ code('241334d8a2') ]]]
+
 The mini-container is great for fetching individual services. But you can't
 loop over *all* the button services inside. To fix that,
 change `#[AutowireLocator]` to `#[AutowireIterator]`.
@@ -16,14 +18,22 @@ This tells Symfony to inject an *iterable* of our services, so this will no long
 be a `ContainerInterface`. Instead, use `iterable` and rename
 `$container` to `$buttons` here... and here. Nice!
 
+[[[ code('14da30f3c8') ]]]
+
 Now, below, loop over the buttons:
 `foreach ($this->buttons as $name => $button)`. `$button` is the actual service,
 but we're going to ignore that *completely* and just grab the `$name`, and add it to
 this `$buttons` array. At the bottom, `return $buttons`.
 
+[[[ code('c85cf4f4dd') ]]]
+
 Back in the controller, we're *already* injecting `ButtonRemote`, so down
 where we render the template, pass a new `buttons` variable
-with `'buttons' => $remote->buttons()`. Add a `dd()` to see what it returns.
+with `'buttons' => $remote->buttons()`.
+
+[[[ code('3a588726bb') ]]]
+
+Add a `dd()` to see what it returns.
 
 Okay, back at the browser, refresh the page and... hm... that's not quite what
 we want. Instead of a list of numbers, we want
@@ -34,25 +44,39 @@ keys. `#[AutowireIterator]` does not! It just gives us an iterable with
 *integer* keys.
 
 To tell it to key the iterable using `#[AsTaggedItem]`'s `$index`, add
-`indexAttribute` set to `key`. Now, when we loop over `$this->buttons`, `$name`
-will be the `$index` which in our case, is the button name.
+`indexAttribute` set to `key`:
+
+[[[ code('86e2d6bb0a') ]]]
+
+Now, when we loop over `$this->buttons`, `$name` will be the `$index` which in
+our case, is the button name.
 
 Over in our controller, we still have this `dd()` so, back in our app, refresh
 and... there we go! We have the button names now! Pretty cool!
 
-Remove the `dd()`, then open `index.html.twig`. Right here, we have a hardcoded
-list of buttons. Add some space, and then `for button in buttons`.
+Remove the `dd()`, then open `index.html.twig`.
+
+Right here, we have a hardcoded list of buttons. Add some space, and then
+`for button in buttons`:
+
+[[[ code('8e44878085') ]]]
 
 In the UI, you probably noticed that the *first* button - the "Power"
 button - looks different: it's red & larger. To keep that special styling,
-add an `if loop.first` here, and an `else` for the rest of the buttons.
+add an `if loop.first` here, and an `else` for the rest of the buttons:
+
+[[[ code('32eb4b85c0') ]]]
 
 Copy the code for the first button and paste it here. Instead of
 hard-coding "power" as the button's value, render the `button` variable.
-Same for the Twig icon's name.
+Same for the Twig icon's name:
+
+[[[ code('1c78dcee5a') ]]]
 
 For the rest of the buttons, copy the second button's code, paste, then replace
-the button's `value` attribute and icon name with the `button` variable.
+the button's `value` attribute and icon name with the `button` variable:
+
+[[[ code('52e554b3ae') ]]]
 
 *Nice*. Celebrate by deleting the rest of the hard-coded buttons.
 
@@ -65,9 +89,25 @@ that, open `PowerButton`. `#[AsTaggedItem]` has a second argument: `priority`.
 
 Before, with `#[AutowireLocator]`, this wasn't important because we were just
 fetching services by their name. But now that we *do* care about the order, add
-`priority` and set it to, how about, `50`. Now we go to the "Channel Up"
-button and add a priority of `40`, the "Channel Down" button, a priority
-of `30`, "Volume Up" a priority of `20`, and "Volume Down", a priority of `10`.
+`priority` and set it to, how about, `50`:
+
+[[[ code('52e554b3ae') ]]]
+
+Now we go to the "Channel Up" button and add a priority of `40`: 
+
+[[[ code('b1050a68e9') ]]]
+
+The "Channel Down" button, a priority of `30`:
+
+[[[ code('1d212f5b90') ]]]
+
+"Volume Up" a priority of `20`:
+
+[[[ code('d683cb52e8') ]]]
+
+and "Volume Down", a priority of `10`:
+
+[[[ code('17f1e9489a') ]]]
 
 Any button *without* an assigned priority has a default priority of `0`.
 
