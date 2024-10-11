@@ -35,7 +35,7 @@ with `'buttons' => $remote->buttons()`:
 
 Add a `dd()` to see what it returns:
 
-[[[ code('f6efbb9463') ]]]
+[[[ code('f02e72eb70') ]]]
 
 Okay, back at the browser, refresh the page and... hm... that's not quite what
 we want. Instead of a list of numbers, we want
@@ -58,7 +58,7 @@ and... there we go! We have the button names now! Pretty cool!
 
 Remove the `dd()`, then open `index.html.twig`.
 
-[[[ code('e8a23e765f') ]]]
+[[[ code('28a4c0dff3') ]]]
 
 Right here, we have a hardcoded list of buttons. Add some space, and then
 `for button in buttons`:
