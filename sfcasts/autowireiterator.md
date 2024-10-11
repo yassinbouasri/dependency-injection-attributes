@@ -29,11 +29,13 @@ this `$buttons` array. At the bottom, `return $buttons`.
 
 Back in the controller, we're *already* injecting `ButtonRemote`, so down
 where we render the template, pass a new `buttons` variable
-with `'buttons' => $remote->buttons()`.
+with `'buttons' => $remote->buttons()`:
 
 [[[ code('3a588726bb') ]]]
 
-Add a `dd()` to see what it returns.
+Add a `dd()` to see what it returns:
+
+[[[ code('f6efbb9463') ]]]
 
 Okay, back at the browser, refresh the page and... hm... that's not quite what
 we want. Instead of a list of numbers, we want
@@ -91,23 +93,23 @@ Before, with `#[AutowireLocator]`, this wasn't important because we were just
 fetching services by their name. But now that we *do* care about the order, add
 `priority` and set it to, how about, `50`:
 
-[[[ code('52e554b3ae') ]]]
+[[[ code('711fc15ae5') ]]]
 
 Now we go to the "Channel Up" button and add a priority of `40`: 
 
-[[[ code('b1050a68e9') ]]]
+[[[ code('1b22c31e7a') ]]]
 
 The "Channel Down" button, a priority of `30`:
 
-[[[ code('1d212f5b90') ]]]
+[[[ code('7f3030ca72') ]]]
 
 "Volume Up" a priority of `20`:
 
-[[[ code('d683cb52e8') ]]]
+[[[ code('8819dd0d68') ]]]
 
 and "Volume Down", a priority of `10`:
 
-[[[ code('17f1e9489a') ]]]
+[[[ code('94117d8d29') ]]]
 
 Any button *without* an assigned priority has a default priority of `0`.
 
