@@ -46,6 +46,16 @@
             "description": null
         },
         {
+            "id": "autowireiterator-add-dd",
+            "name": "AutowireIterator: add dd",
+            "description": null
+        },
+        {
+            "id": "autowireiterator-remove-dd",
+            "name": "AutowireIterator: remove dd",
+            "description": null
+        },
+        {
             "id": "autowireiterator-refactor-template",
             "name": "AutowireIterator: refactor template",
             "description": null
@@ -246,5 +256,5 @@
             "description": null
         }
     ],
-    "sha": "329f5c8b5272ef05ef75918ac3f45b8a210a83ba"
+    "sha": "086eef4ab03091b14d05e07ecc376d7a56b1be8f"
 }
