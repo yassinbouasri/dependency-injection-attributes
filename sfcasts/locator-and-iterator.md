@@ -6,82 +6,62 @@ we're no longer injecting a container.
 
 Over in `ButtonRemote.php`, there's a couple of ways we could solve this. The
 first approach, which is probably the *easiest*, is to inject two arguments
-here: One that's an *iterator* and one for the container. That *would* work and
+here: One that's an *iterator* and one for the *locator*. That *would* work and
 it's perfectly valid, but there's a *better* way.
 
-We *could* inject something that's both an iterator *and* a container -
-a `ServiceCollectionInterface`. Let’s take a look at that. This extends
-the `ServiceProviderInterface`. That's an `IteratorAggregate`, so in *addition*
-to being iterable, it's *also* `Countable`. That means we could *count* the
-services in there if that was a requirement.
+We can inject an object that's both an iterator *and* a locator:
+`ServiceCollectionInterface`. This is a `ServiceProviderInterface` (that's
+the *locator*) *and* an `IteratorAggregate` (that's the *iterator*). For good
+measure, it's also `Countable`.
 
-If we look at `ServiceProviderInterface.php`, we can see that it
-extends `ContainerInterface`. So this is both a container *and* an iterator at
-the same time, and *that* saves us from having to inject two different things.
-*So*, let's switch this back to `AutowireLocator`. Now *this* will be injected
-and it'll be both an iterator and a service container. Convenient! I'll clean up
-some unused imports here, and... nice. Now this code should work as expected
-because we’ll be able to both loop over all of the buttons within the iterator
-and *still* be able to get and press each button through the container.
+We need to switch this back to `AutowireLocator` for Symfony to inject the
+`ServiceCollectionInterface`.
 
-Let’s refresh our app. Okay, we’re *still* listing the buttons, so that’s a good
-sign. That part of our app is working again. If we jump back into our profiler
-and look at the `POST` request, you can see that we're still calling our logic
-in the `ChannelDownButton`, based on the button found via our Command pattern.
+I'll clean up some unused imports here, and... nice.
 
-Okay, we need to talk about *laziness*. One of the great things about injecting
-service container is that the underlying button services aren't instantiated
-until we call `get()`. So if we call `get()` on `power`, only the "Power" button
-will be instantiated in our app - the others won't be.
+Back in our app, refresh and... Okay, we’re *still* listing the buttons, so
+that’s a good sign. Now, if we click a button... it looks like this is working
+again. Pop into the profiler to check the `POST` request and the proper button
+logic is still being called. *Sweet*!
 
-This is a really nice way to improve performance because you don’t have to
-instantiate *every single button*. But this isn't without problems. As soon as
-we start iterating over the buttons, we actually *are* instantiating them. *So*
-we've kind of removed the lazy aspect, and we're still instantiating each
-button. For a *small* app like this one, it's not a big deal, but if we had
-*hundreds* of services in here, this wouldn't be a solid solution.
+One of the great things about a service locator is it's *lazy*. Services aren't
+instantiated until we call `get()`, and even then, only that single one.
 
-`ServiceCollectionInterface` to the rescue! We’re going to remove all of this
-code and `dd(buttons.getProvidedServices)`. Okay, let’s jump back to our browser
-and see what that looks like.
+I *love* being lazy but we have a problem. Down here, in `buttons()`, we're
+iterating over all the buttons. This is *forcing* the instantiation of *all*
+the button services just to get their `$name`'s. Since we just care about the
+names, this is a waste of resources.
 
-All right, we can see that this looks *very* similar to what we had back in
-Chapter 2. This method, `getProvidedServices()`, returns an array keyed by our
-button names. This is just some internal code that tells Symfony how to wire
-each of these services inside the service container. We need to get the array
-keys for this and return them. To do that, say `return array_keys()`. There we
-go! By calling `getProvidedServices()`, we're no longer instantiating *all* of
-the services just to get the keys. That should *significantly* improve
-performance, even in larger apps. If we head back to our browser and refresh...
-everything is working as expected again!
+`ServiceCollectionInterface` to the rescue! Symfony service locators have
+a special method called `getProvidedServices()`. Remove all this code and
+`dd($this->buttons->getProvidedServices())` to see what it returns.
 
-To be *doubly* sure that everything is working as expected, let's add a new
-button to our remote. All we need to do for our remote to register it is add a
-new button implementation. *So* add a new PHP class called `MuteButton`... and
-implement `ButtonInterface`. Then hold "control" + "enter", select "Implement
-methods", and implement `press`. Inside this, we'll
-just `dump('Mute button pressed.)`.
+Jump back to our app and refresh. This looks almost identical to the manual
+mapping we previously used with `#[AutowireLocator]`.
 
-Now, if you recall from our other buttons, we need to add this `#[AsTaggedItem]`
-attribute. So let's do that... and we'll set the index to `mute`. We can leave
-the priority as the default, which is *zero*, because all of our other buttons
-are a higher priority; This one should just fall below the existing buttons.
+We want the *keys* of this array. Back here, return `array_keys()` of
+`$this->buttons->getProvidedServices()`.
 
-Before we try this, there's one more thing we have to do. Each button has a SVG
-icon that's included in `assets/icons`. In the `tutorial/` directory, all we
-need to do is copy this `mute.svg` file that was already created for us and
-paste it into`assets/icons`. That's it!
+Go back to the app and... refresh. Everything is still working as expected and
+behind the scenes, we're no longer instantiating *all* the button services.
 
-*So*, to recap, when we're adding a new button, we need to create a service that
-implements `ButtonInterface`, add `#[AsTaggedItem]` with the name of the button,
-and then add the SVG to the `assets/icons/` directory. The template should
-render it correctly.
+Performance win!
 
-If we go to our app and refresh... there it is! Our button was *automatically*
-added to our remote. If we click it and check the profiler... it prints "Mute
-button pressed.", which is coming from the `MuteButton` service we just created.
-This is working as expected. *Awesome*!
+To celebrate all the improvements we've made, let's add a new button to our
+remote!
 
-So *that's it*! We've fully refactored our app and improved its performance
-using the Command pattern. Next: Let's add *logging* to our remote, and *do it*
-in a way that separates the concerns.
+Create a new PHP class called `MuteButton`, implement `ButtonInterface`, and
+add `#[AddTaggedItem]` with an `$index` of `mute`. Leave the priority as the
+default, `0`. This will slot this button below the others.
+
+There's just one other thing we need to do. Each button has an SVG icon in
+`assets/icons` with the same name as the button. Copy `mute.svg` file from
+`tutorials/` and paste it here.
+
+Moment of truth! Go back to our app, refresh, and... there it is! Click it
+and check the profiler. It's working as expected!
+
+That's it for this refactor! Adding new buttons is now super simple *but*
+still performant.
+
+Next, let's add logging to our remote!
