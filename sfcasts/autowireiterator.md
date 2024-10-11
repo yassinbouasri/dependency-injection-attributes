@@ -58,6 +58,8 @@ and... there we go! We have the button names now! Pretty cool!
 
 Remove the `dd()`, then open `index.html.twig`.
 
+[[[ code('e8a23e765f') ]]]
+
 Right here, we have a hardcoded list of buttons. Add some space, and then
 `for button in buttons`:
 
