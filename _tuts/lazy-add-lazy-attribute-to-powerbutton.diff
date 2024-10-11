@@ -1,5 +1,5 @@
 diff --git a/src/Remote/Button/PowerButton.php b/src/Remote/Button/PowerButton.php
-index b74b86b..56071ac 100644
+index 8bc1e05..74d4a86 100644
 --- a/src/Remote/Button/PowerButton.php
 +++ b/src/Remote/Button/PowerButton.php
 @@ -3,8 +3,10 @@
@@ -8,7 +8,7 @@ index b74b86b..56071ac 100644
  use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
 +use Symfony\Component\DependencyInjection\Attribute\Lazy;
  
- #[AsTaggedItem('power', priority: 100)]
+ #[AsTaggedItem('power', priority: 50)]
 +#[Lazy]
  final class PowerButton implements ButtonInterface
  {
