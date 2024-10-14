@@ -1,6 +1,6 @@
 # Container and Iterator with ServiceCollectionInterface
 
-In the last chapter, we added these buttons *programmatically* from our remote.
+In the last chapter, we made these buttons listed *programmatically*.
 *But* when we did that, we broke the actual button-press functionality! Whoops!
 The kids are getting restless: we need to fix this.
 
@@ -26,8 +26,9 @@ again! Pop into the profiler to check the `POST` request to see that the proper 
 logic *is* still being called. *Sweet*!
 
 One of the great things about a service locator is that it's *lazy*. Services aren't
-instantiated until and *unless* we call `get()`. And even then, only a single
-service is created, even if we go nuts and call `get()` a bunch of times.
+instantiated until and *unless* we call `get()` to fetch them. And even then,
+only a single service is created, even if we go nuts and call `get()` for the
+same service a bunch of times.
 
 I *love* being lazy but we have a problem. Down here, in `buttons()`, we're
 iterating over all the buttons. This is *forcing* the instantiation of *all*
@@ -52,7 +53,7 @@ Performance win!
 To celebrate, let's add a new button to our remote!
 
 Create a new PHP class called `MuteButton`, implement `ButtonInterface`, and
-add `#[AddTaggedItem]` with an `$index` of `mute`. Leave the priority as the
+add `#[AsTaggedItem]` with an `$index` of `mute`. Leave the priority as the
 default, `0`. This will slot this button below the others.
 
 There's just one other thing we need to do. Each button has an SVG icon in
@@ -63,8 +64,7 @@ Moment of truth! Go back to our app, refresh, and... there it is! Click it
 and check the profiler. It's working! Now we can mute the TV when the
 kids are watching Barney. *Perfect*!
 
-That's it for this refactor! Adding buttons is simple *and*
-performant.
+That's it for this refactor! Adding buttons is simple *and* performant.
 
 Next, let's add logging to our remote and learn about our next attribute:
 `#[AsAlias]`.
