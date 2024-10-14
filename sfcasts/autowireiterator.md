@@ -9,7 +9,7 @@ Start inside `ButtonRemote`. We need a way to get a list of
 create a `public` method here called `buttons()`, which will return an `array`.
 This will be an array of strings: our button names!
 
-[[[ code('241334d8a2') ]]]
+[[[ code('15fc223848') ]]]
 
 The mini-container is great for fetching individual services. But you can't
 loop over *all* the button services inside. To fix that,
@@ -18,7 +18,7 @@ This tells Symfony to inject an *iterable* of our services, so this will no long
 be a `ContainerInterface`. Instead, use `iterable` and rename
 `$container` to `$buttons` here... and here. Nice!
 
-[[[ code('14da30f3c8') ]]]
+[[[ code('2bae748fd6') ]]]
 
 Now, below, loop over the buttons:
 `foreach ($this->buttons as $name => $button)`. `$button` is the actual service,
@@ -31,7 +31,7 @@ Back in the controller, we're *already* injecting `ButtonRemote`, so down
 where we render the template, pass a new `buttons` variable
 with `'buttons' => $remote->buttons()`:
 
-[[[ code('3a588726bb') ]]]
+[[[ code('7721d9e4ee') ]]]
 
 Add a `dd()` to see what it returns:
 
@@ -63,13 +63,13 @@ Remove the `dd()`, then open `index.html.twig`.
 Right here, we have a hardcoded list of buttons. Add some space, and then
 `for button in buttons`:
 
-[[[ code('8e44878085') ]]]
+[[[ code('f931ad08ce') ]]]
 
 In the UI, you probably noticed that the *first* button - the "Power"
 button - looks different: it's red & larger. To keep that special styling,
 add an `if loop.first` here, and an `else` for the rest of the buttons:
 
-[[[ code('32eb4b85c0') ]]]
+[[[ code('8d5ab6ce3f') ]]]
 
 Copy the code for the first button and paste it here. Instead of
 hard-coding "power" as the button's value, render the `button` variable.

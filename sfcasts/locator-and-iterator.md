@@ -16,7 +16,9 @@ the *locator*) *and* an `IteratorAggregate` (that's the *iterator*). For good
 measure, it's also `Countable`.
 
 We need to switch this back to `AutowireLocator` for Symfony to inject the
-`ServiceCollectionInterface`.
+`ServiceCollectionInterface`:
+
+[[[ code('5ad7e20eb4') ]]]
 
 I'll clean up some unused imports here, and... nice.
 
@@ -37,13 +39,17 @@ names, this is a waste!
 
 `ServiceCollectionInterface` to the rescue! Symfony service locators have
 a special method called `getProvidedServices()`. Remove all this code and
-`dd($this->buttons->getProvidedServices())` to see what it returns.
+`dd($this->buttons->getProvidedServices())` to see what it returns:
+
+[[[ code('7c963b95f9') ]]]
 
 Jump back to our app and refresh. This looks almost identical to the manual
 mapping we previously used with `#[AutowireLocator]`.
 
 We want the *keys* of this array. Back here, return `array_keys()` of
-`$this->buttons->getProvidedServices()`.
+`$this->buttons->getProvidedServices()`:
+
+[[[ code('250cb67f36') ]]]
 
 Go back to the app and... refresh. Everything is still working and
 behind the scenes, we're no longer instantiating *all* the button services.
@@ -54,7 +60,9 @@ To celebrate, let's add a new button to our remote!
 
 Create a new PHP class called `MuteButton`, implement `ButtonInterface`, and
 add `#[AsTaggedItem]` with an `$index` of `mute`. Leave the priority as the
-default, `0`. This will slot this button below the others.
+default, `0`. This will slot this button below the others:
+
+[[[ code('43d438a73c') ]]]
 
 There's just one other thing we need to do. Each button has an SVG icon in
 `assets/icons` with the same name as the button. Copy the `mute.svg` file from
