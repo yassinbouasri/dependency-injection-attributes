@@ -10,28 +10,3 @@ index 9db7d8a..7acea8c 100644
  
  when@dev:
      monolog:
-diff --git a/src/Remote/LoggerRemote.php b/src/Remote/LoggerRemote.php
-index 18ce5d0..8d69979 100644
---- a/src/Remote/LoggerRemote.php
-+++ b/src/Remote/LoggerRemote.php
-@@ -10,17 +10,17 @@ final class LoggerRemote implements RemoteInterface
- {
-     public function __construct(
-         private RemoteInterface $inner,
--        private LoggerInterface $logger,
-+        private LoggerInterface $buttonLogger,
-     ) {
-     }
- 
-     public function press(string $name): void
-     {
--        $this->logger->info('Pressing button {name}', ['name' => $name]);
-+        $this->buttonLogger->info('Pressing button {name}', ['name' => $name]);
- 
-         $this->inner->press($name);
- 
--        $this->logger->info('Button {name} pressed', ['name' => $name]);
-+        $this->buttonLogger->info('Button {name} pressed', ['name' => $name]);
-     }
- 
-     public function buttons(): iterable

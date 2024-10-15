@@ -96,6 +96,46 @@
             "description": null
         },
         {
+            "id": "log-add-loggerremote",
+            "name": "Log: Add LoggerRemote",
+            "description": null
+        },
+        {
+            "id": "log-use-loggerremote",
+            "name": "Log: use LoggerRemote",
+            "description": null
+        },
+        {
+            "id": "log-add-remoteinterface",
+            "name": "Log: add RemoteInterface",
+            "description": null
+        },
+        {
+            "id": "log-implement-and-use-remoteinterface",
+            "name": "Log: implement and use RemoteInterface",
+            "description": null
+        },
+        {
+            "id": "log-add-asalias-to-buttonremote",
+            "name": "Log: add AsAlias to ButtonRemote",
+            "description": null
+        },
+        {
+            "id": "log-inject-remoteinterface-into-remotecontroller",
+            "name": "Log: Inject RemoteInterface into RemoteController",
+            "description": null
+        },
+        {
+            "id": "log-asdecorator-to-loggerremote",
+            "name": "Log: AsDecorator to LoggerRemote",
+            "description": null
+        },
+        {
+            "id": "log-autowiredecorated",
+            "name": "Log: AutowireDecorated",
+            "description": null
+        },
+        {
             "id": "logging-add-remoteinterface",
             "name": "Logging: add RemoteInterface",
             "description": null
@@ -256,5 +296,5 @@
             "description": null
         }
     ],
-    "sha": "b1571ab29fbd72e80a60d9696b40f80835a4a36b"
+    "sha": "fb93ec28b649a695eda0c5d58306681a4b9980c4"
 }
