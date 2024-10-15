@@ -11,6 +11,8 @@ corresponding messages.
 So this is *super* simple. The form just posts to the same page, handles the
 button logic, and then redirects us back with the flash message.
 
+## Reviewing the Controller Logic
+
 Over in our code, open up `src/Controller`, find `RemoteController` and... here
 we go! We’re checking to see if the request is a `POST`, and since each button
 *submits* with a name, this `switch()` statement grabs that from the request.
@@ -25,6 +27,8 @@ switch-case statement like this, it's usually a good opportunity to refactor,
 especially as we add more buttons and logic. A great way to do this is with the
 Command pattern. If you'd like a more in-depth look at this pattern, check out
 our "Design Patterns" course!
+
+## Creating Commands
 
 Okay, the first thing we’re going to do is create some commands, which will
 represent the buttons and house all of their logic. In `src/`, let's create a
@@ -43,6 +47,8 @@ to the `Button` directory. *Easy peasy*! If we look at `ChannelDownButton.php`,
 we can see that it has the `press()` method implemented and the same `dump()`
 that we saw in our controller, along with the button message.
 
+## Building the Command Handler
+
 All right, we have our commands! Now we need a *command handler* to take the
 button name and execute the corresponding command. For this, we’ll create an
 *object* to *act* as our command handler. In the `Remote` directory, create a
@@ -60,6 +66,8 @@ the button object. In the `press()` method, we’ll
 use `$this->container->get($name)` to *retrieve* the `ButtonInterface` instance
 and call `press()`.
 
+## `#[AutowireLocator]`
+
 Right now, calling the `press()` method will give us an error because Symfony
 doesn’t know how to wire up this container. To help out, we’ll use
 the `#[AutowireLocator()]` dependency injection attribute. In *older* Symfony
@@ -76,6 +84,8 @@ and `'volume-down' => VolumeDownButton::class`. Ta-da! Our command handler is
 ready! 
 
 [[[ code('91a0f69297') ]]]
+
+## Refactoring the Controller
 
 Now we need to replace the big switch-case statement in our controller
 with *this*.
