@@ -1,9 +1,9 @@
 diff --git a/src/Remote/LoggerRemote.php b/src/Remote/LoggerRemote.php
 new file mode 100644
-index 0000000..0cd6e43
+index 0000000..dc8240c
 --- /dev/null
 +++ b/src/Remote/LoggerRemote.php
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,35 @@
 +<?php
 +
 +namespace App\Remote;
@@ -20,11 +20,15 @@ index 0000000..0cd6e43
 +
 +    public function press(string $name): void
 +    {
-+        $this->logger->info('Pressing button '.$name);
++        $this->logger->info('Pressing button {name}', [
++            'name' => $name
++        ]);
 +
 +        $this->inner->press($name);
 +
-+        $this->logger->info('Pressed button '.$name);
++        $this->logger->info('Pressed button {name}', [
++            'name' => $name
++        ]);
 +    }
 +
 +    /**

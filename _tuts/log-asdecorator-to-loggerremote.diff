@@ -1,5 +1,5 @@
 diff --git a/src/Remote/LoggerRemote.php b/src/Remote/LoggerRemote.php
-index f470d68..f1fd6fd 100644
+index e9bd2b0..684d503 100644
 --- a/src/Remote/LoggerRemote.php
 +++ b/src/Remote/LoggerRemote.php
 @@ -3,7 +3,9 @@

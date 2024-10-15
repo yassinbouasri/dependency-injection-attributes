@@ -136,6 +136,11 @@
             "description": null
         },
         {
+            "id": "log-remove-autowiredecorated",
+            "name": "Log: remove AutowireDecorated",
+            "description": null
+        },
+        {
             "id": "logging-dd-remote-in-controller",
             "name": "Logging: dd $remote in controller",
             "description": null
@@ -271,5 +276,5 @@
             "description": null
         }
     ],
-    "sha": "67989b504ea9082135db0a6e21c5a289e70b8379"
+    "sha": "8cd01dd4e6fd9ae1a4ac7034b9d35187a9d0c197"
 }

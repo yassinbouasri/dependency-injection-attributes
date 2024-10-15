@@ -1,5 +1,5 @@
 diff --git a/src/Remote/LoggerRemote.php b/src/Remote/LoggerRemote.php
-index f1fd6fd..d0c18b9 100644
+index 684d503..68885a9 100644
 --- a/src/Remote/LoggerRemote.php
 +++ b/src/Remote/LoggerRemote.php
 @@ -4,12 +4,15 @@ namespace App\Remote;

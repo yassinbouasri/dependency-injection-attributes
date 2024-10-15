@@ -12,7 +12,7 @@ index c6f3652..5d6c336 100644
      public function __construct(
          #[AutowireLocator(ButtonInterface::class, indexAttribute: 'key')]
 diff --git a/src/Remote/LoggerRemote.php b/src/Remote/LoggerRemote.php
-index 0cd6e43..f470d68 100644
+index dc8240c..e9bd2b0 100644
 --- a/src/Remote/LoggerRemote.php
 +++ b/src/Remote/LoggerRemote.php
 @@ -4,11 +4,11 @@ namespace App\Remote;
