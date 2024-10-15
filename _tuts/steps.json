@@ -191,8 +191,8 @@
             "description": null
         },
         {
-            "id": "when-change-back-to-dev",
-            "name": "When: change back to dev",
+            "id": "delete-1",
+            "name": "delete 1",
             "description": null
         },
         {
@@ -201,8 +201,8 @@
             "description": null
         },
         {
-            "id": "exclude-remove",
-            "name": "Exclude: remove",
+            "id": "delete-2",
+            "name": "delete 2",
             "description": null
         },
         {
@@ -276,5 +276,5 @@
             "description": null
         }
     ],
-    "sha": "8cd01dd4e6fd9ae1a4ac7034b9d35187a9d0c197"
+    "sha": "810614e201c8dc4e7eb0744fb1f092ad1ba74935"
 }
