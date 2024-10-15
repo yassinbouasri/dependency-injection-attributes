@@ -136,23 +136,23 @@
             "description": null
         },
         {
-            "id": "logging-add-remoteinterface",
-            "name": "Logging: add RemoteInterface",
+            "id": "delete-1",
+            "name": "Delete 1",
             "description": null
         },
         {
-            "id": "logging-use-remoteinterface-in-controller",
-            "name": "Logging: use RemoteInterface in controller",
+            "id": "delete-2",
+            "name": "delete 2",
             "description": null
         },
         {
-            "id": "logging-add-loggerremote",
-            "name": "Logging: add LoggerRemote",
+            "id": "delete-3",
+            "name": "delete 3",
             "description": null
         },
         {
-            "id": "logging-add-asalias-to-buttonremote",
-            "name": "Logging: add AsAlias to ButtonRemote",
+            "id": "delete-4",
+            "name": "delete 4",
             "description": null
         },
         {
@@ -161,8 +161,8 @@
             "description": null
         },
         {
-            "id": "logging-add-asdecorator-to-loggerremote",
-            "name": "Logging: add AsDecorator to LoggerRemote",
+            "id": "delete-5",
+            "name": "delete 5",
             "description": null
         },
         {
@@ -296,5 +296,5 @@
             "description": null
         }
     ],
-    "sha": "fb93ec28b649a695eda0c5d58306681a4b9980c4"
+    "sha": "3b85620164607ec852f28644e2cb3536dc9900ef"
 }
