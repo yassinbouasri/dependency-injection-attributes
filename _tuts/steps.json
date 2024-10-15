@@ -136,33 +136,8 @@
             "description": null
         },
         {
-            "id": "delete-1",
-            "name": "Delete 1",
-            "description": null
-        },
-        {
-            "id": "delete-2",
-            "name": "delete 2",
-            "description": null
-        },
-        {
-            "id": "delete-3",
-            "name": "delete 3",
-            "description": null
-        },
-        {
-            "id": "delete-4",
-            "name": "delete 4",
-            "description": null
-        },
-        {
             "id": "logging-dd-remote-in-controller",
             "name": "Logging: dd $remote in controller",
-            "description": null
-        },
-        {
-            "id": "delete-5",
-            "name": "delete 5",
             "description": null
         },
         {
