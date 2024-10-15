@@ -191,18 +191,8 @@
             "description": null
         },
         {
-            "id": "delete-1",
-            "name": "delete 1",
-            "description": null
-        },
-        {
             "id": "exclude-add",
             "name": "Exclude: add",
-            "description": null
-        },
-        {
-            "id": "delete-2",
-            "name": "delete 2",
             "description": null
         },
         {
