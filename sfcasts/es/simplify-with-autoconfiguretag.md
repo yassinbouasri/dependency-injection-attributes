@@ -2,6 +2,8 @@
 
 En el último capítulo, refactorizamos la gran sentencia `switch` de nuestro controlador a este pequeño try-catch. Nuestro control remoto funciona igual que antes, pero ahora utilizamos el patrón Comando. También utilizamos este atributo `AutowireLocator` para decirle a Symfony cómo conectar este contenedor. Esto está muy bien, pero ¿y si te dijera que podemos simplificarlo aún más?
 
+## `#[AutoconfigureTag]`
+
 Como todos nuestros botones implementan este atributo `ButtonInterface`, añadiremos nuestro segundo atributo de inyección de dependencia: `#[AutoconfigureTag]`:
 
 [[[ code('032131c063') ]]]
@@ -10,7 +12,9 @@ Este atributo le dice a Symfony:
 
 > ¡Eh, añade una etiqueta a cualquier servicio que implemente esta interfaz!
 
-Una etiqueta no es más que una cadena conectada a un servicio, y por sí misma, no hace realmente nada. Pero, ahora que nuestros servicios tienen esta etiqueta, podemos sustituir la asignación manual de servicios que utilizamos en el atributo`#[AutowireLocator]` de `ButtonRemote` por el nombre de la etiqueta:
+## Etiquetas de servicio
+
+Una etiqueta no es más que una cadena conectada a un servicio, y por sí misma, en realidad no hace nada. Pero, ahora que nuestros servicios tienen esta etiqueta, podemos sustituir la asignación manual de servicios que utilizamos en el atributo`#[AutowireLocator]` de `ButtonRemote` por el nombre de la etiqueta:
 
 [[[ code('5c5e7e0928') ]]]
 
@@ -21,6 +25,8 @@ Bien, de vuelta en nuestro navegador, veamos si todo sigue funcionando. Pulsa un
 > Botón "power" no encontrado.
 
 Desplázate hacia abajo para ver los detalles de la excepción. Ah, ¡aquí está! Esta excepción "no encontrado" fue lanzada desde el método `press()` porque no pudo encontrar "poder" en el contenedor `ButtonRemote`'s. Por suerte, los detalles de la excepción anterior nos muestran los ID de servicio que sí encontró: los nombres de clase completos de nuestros botones. Así que se están conectando, pero no por el ID que necesitamos.
+
+## `#[AsTaggedItem]`
 
 Queremos que los ID de servicio de nuestro contenedor sean los nombres slug de nuestros botones. Para ello, utilizaremos nuestro siguiente atributo de inyección de dependencia: `#[AsTaggedItem]`. Ponerlo en las implementaciones de `ButtonInterface` nos permite personalizar el ID de servicio.
 
@@ -42,4 +48,4 @@ Muy bien, vuelve a tu navegador... actualiza la página... pulsa un botón, y...
 
 Así que ahora, siempre que queramos añadir un nuevo botón, sólo tenemos que crear la clase botón, hacer que implemente el `ButtonInterface`, y añadir el atributo `#[AsTaggedItem]` con un nombre de botón único.
 
-Si queremos que esto aparezca en nuestra interfaz de usuario remota, aún tendremos que añadirlo a nuestra plantilla. Pero, ¿y si pudiéramos hacerlo aún mejor? ¿Y si no tuviéramos que editar este archivo cada vez que añadimos un nuevo botón? Para ello, necesitamos utilizar otro atributo de inyección de dependencia. Eso a continuación.
+Si queremos que esto aparezca en nuestra IU remota, aún tendremos que añadirlo a nuestra plantilla. Pero, ¿y si pudiéramos hacerlo aún mejor? ¿Y si no tuviéramos que editar este archivo cada vez que añadimos un nuevo botón? Para ello, necesitamos utilizar otro atributo de inyección de dependencia. Eso a continuación.

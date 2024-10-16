@@ -1,17 +1,15 @@
-diff --git a/src/Remote/Button/DiagnosticsButton.php b/src/Remote/Button/DiagnosticsButton.php
-index f601d3f..5124a8c 100644
---- a/src/Remote/Button/DiagnosticsButton.php
-+++ b/src/Remote/Button/DiagnosticsButton.php
-@@ -3,10 +3,12 @@
+diff --git a/src/Remote/Button/MuteButton.php b/src/Remote/Button/MuteButton.php
+index 93e881c..1626114 100644
+--- a/src/Remote/Button/MuteButton.php
++++ b/src/Remote/Button/MuteButton.php
+@@ -3,8 +3,10 @@
  namespace App\Remote\Button;
  
  use Symfony\Component\DependencyInjection\Attribute\AsTaggedItem;
 +use Symfony\Component\DependencyInjection\Attribute\Exclude;
- use Symfony\Component\DependencyInjection\Attribute\When;
  
- #[AsTaggedItem('diagnostics')]
- #[When('dev')]
+ #[AsTaggedItem('mute')]
 +#[Exclude]
- final class DiagnosticsButton implements ButtonInterface
+ final class MuteButton implements ButtonInterface
  {
      public function press(): void

@@ -6,6 +6,8 @@ before, but now we're using the *Command pattern*. We also used
 this `AutowireLocator` attribute to tell Symfony how to wire up this container.
 This is *great*, but what if I told you we could simplify this *even* more?
 
+## `#[AutoconfigureTag]`
+
 Since all of our buttons implement this `ButtonInterface`, we'll add our
 *second* dependency injection attribute: `#[AutoconfigureTag]`:
 
@@ -14,6 +16,8 @@ Since all of our buttons implement this `ButtonInterface`, we'll add our
 This attribute tells Symfony:
 
 > Hey, add a tag to any service that implements this interface!
+
+## Service Tags
 
 A *tag* is just a string that's connected to a service, and by *itself*, it
 doesn't really *do* anything. *But*, now that our services have this tag, we can
@@ -37,6 +41,8 @@ couldn't find "power" in `ButtonRemote`'s container. *Luckily*, the previous exc
 details shows us the
 service IDs it *did* find - the *full class names* of our buttons. So they *are*
 being wired up, but not by the ID we need.
+
+## `#[AsTaggedItem]`
 
 We want the service ID's of our container to be the *slug* names of our buttons. To
 do this, we'll use our next dependency injection attribute: `#[AsTaggedItem]`.

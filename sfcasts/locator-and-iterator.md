@@ -10,6 +10,8 @@ one that's an *iterator* of the button services and one that's a
 *locator*, meaning a mini-container with a `get()` method for fetching each
 service. That *would* work and it's perfectly valid. But we can do better!
 
+## `ServiceCollectionInterface`
+
 We can inject an object that's both an iterator *and* a locator:
 `ServiceCollectionInterface`. This is a `ServiceProviderInterface` (that's
 the *locator*) *and* an `IteratorAggregate` (that's the *iterator*). For good
@@ -27,6 +29,8 @@ that's a good sign. Now, if we click a button... it looks like this is working
 again! Pop into the profiler to check the `POST` request to see that the proper button
 logic *is* still being called. *Sweet*!
 
+## Laziness
+
 One of the great things about a service locator is that it's *lazy*. Services aren't
 instantiated until and *unless* we call `get()` to fetch them. And even then,
 only a single service is created, even if we go nuts and call `get()` for the
@@ -36,6 +40,8 @@ I *love* being lazy but we have a problem. Down here, in `buttons()`, we're
 iterating over all the buttons. This is *forcing* the instantiation of *all*
 the button services just to get their `$name`'s. Since we just care about the
 names, this is a waste!
+
+## `ServiceCollectionInterface::getProvidedServices()`
 
 `ServiceCollectionInterface` to the rescue! Symfony service locators have
 a special method called `getProvidedServices()`. Remove all this code and
@@ -57,6 +63,8 @@ behind the scenes, we're no longer instantiating *all* the button services.
 Performance win!
 
 To celebrate, let's add a new button to our remote!
+
+## Adding a Mute Button
 
 Create a new PHP class called `MuteButton`, implement `ButtonInterface`, and
 add `#[AsTaggedItem]` with an `$index` of `mute`. Leave the priority as the

@@ -11,6 +11,8 @@ This will be an array of strings: our button names!
 
 [[[ code('15fc223848') ]]]
 
+## `#[AutowireIterator]`
+
 The mini-container is great for fetching individual services. But you can't
 loop over *all* the button services inside. To fix that,
 change `#[AutowireLocator]` to `#[AutowireIterator]`.
@@ -26,6 +28,8 @@ but we're going to ignore that *completely* and just grab the `$name`, and add i
 this `$buttons` array. At the bottom, `return $buttons`.
 
 [[[ code('c85cf4f4dd') ]]]
+
+## Passing Buttons to the Template
 
 Back in the controller, we're *already* injecting `ButtonRemote`, so down
 where we render the template, pass a new `buttons` variable
@@ -45,6 +49,8 @@ automatically uses the `$index` property from `#[AsTaggedItem]` for the service
 keys. `#[AutowireIterator]` does not! It just gives us an iterable with
 *integer* keys.
 
+## `#[AutowireIterator]`'s `indexAttribute`
+
 To tell it to key the iterable using `#[AsTaggedItem]`'s `$index`, add
 `indexAttribute` set to `key`:
 
@@ -59,6 +65,8 @@ and... there we go! We have the button names now! Pretty cool!
 Remove the `dd()`, then open `index.html.twig`.
 
 [[[ code('28a4c0dff3') ]]]
+
+## Rendering Buttons Dynamically
 
 Right here, we have a hardcoded list of buttons. Add some space, and then
 `for button in buttons`:
@@ -87,6 +95,8 @@ the button's `value` attribute and icon name with the `button` variable:
 Let's try it! Spin back over to our app and refresh... hm... It's rendering
 the buttons, but they're not in the right order. We want this one at the top.
 So... what do we do?
+
+## Ordering Services with `AsTaggedItem::$priority`
 
 We need to *enforce* the order of our buttons in the iterator. To do
 that, open `PowerButton`. `#[AsTaggedItem]` has a second argument: `priority`.
