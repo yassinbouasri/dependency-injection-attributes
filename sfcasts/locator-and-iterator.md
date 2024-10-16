@@ -13,12 +13,12 @@ service. That *would* work and it's perfectly valid. But we can do better!
 ## `ServiceCollectionInterface`
 
 We can inject an object that's both an iterator *and* a locator:
-`ServiceCollectionInterface`. This is a `ServiceProviderInterface` (that's
-the *locator*) *and* an `IteratorAggregate` (that's the *iterator*). For good
-measure, it's also `Countable`.
+`ServiceCollectionInterface`. Let's take a look at that. This
+a `ServiceProviderInterface` (that's the *locator*) *and* an `IteratorAggregate`
+(that's the *iterator*). For good measure, it's also `Countable`.
 
-We need to switch this back to `AutowireLocator` for Symfony to inject the
-`ServiceCollectionInterface`:
+Back in `ButtonRemote`, we need to switch `AutowireIterator` back to
+`AutowireLocator` for Symfony to inject the `ServiceCollectionInterface`:
 
 [[[ code('5ad7e20eb4') ]]]
 
@@ -66,9 +66,11 @@ To celebrate, let's add a new button to our remote!
 
 ## Adding a Mute Button
 
-Create a new PHP class called `MuteButton`, implement `ButtonInterface`, and
-add `#[AsTaggedItem]` with an `$index` of `mute`. Leave the priority as the
-default, `0`. This will slot this button below the others:
+Create a new PHP class called `MuteButton` and have it implement
+`ButtonInterface`. Press `Ctrl+Enter` to generate the `press()` method. Inside,
+write `dump('Pressed mute button')`. Now, add `#[AsTaggedItem]` with an `$index`
+of `mute`. Leave the priority as the default, `0`. This will slot this button
+below the others:
 
 [[[ code('43d438a73c') ]]]
 
