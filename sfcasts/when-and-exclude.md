@@ -7,43 +7,45 @@ environment.
 
 ## Adding a Diagnostics Button
 
-The first thing we need to do is create a new button the same way we created
-our "Mute" button a few chapters ago. In `App\Remote\Button`, create a new class
-called `DiagnosticsButton`. Make that implement `ButtonInterface`... and hold
+In `App\Remote\Button`, create a new class:
+`DiagnosticsButton`. Make it implement `ButtonInterface`... and hold
 "control" + "enter" to add the `press()` method. Inside,
-we'll `dump('Pressed diagnostics button.')`... and, just like before, we'll add
-the `#[AsTaggedItem]` attribute with `diagnostics` as the index. Finally, copy
+we'll `dump('Pressed diagnostics button.')`... and, just like before, add
+`#[AsTaggedItem]` with `diagnostics` as the index. Finally, copy
 the `diagnostics.svg` file from the `tutorial/` directory into `assets/icons/`.
-Cool!
 
-Okay, if we spin over to our app and refresh... *there's* our new button! And if
-we press it... it looks like it's working!
+Spin over to our app and refresh... new button! And if
+we press it... it even looks like it's working! We're pretty impressive 
+remote control developers!
 
 ## `#[When]`
 
 Our new button is automatically registered with the service container, but we
 want it *only* in the `dev` environment. The `#[When]` attribute is *perfect* for this. Back
-in `DiagnosticsButton`, add the `#[When]` attribute with `dev` as the
-argument. This means that this class will be *completely* ignored by the service
-container *unless* we're in the `dev` environment. If we head over and refresh
-again... it's *still* there. That's *expected* since we're currently in
-the `dev` environment, so let's fudge this a bit. Change the `#[When]`
-attribute argument from `dev` to `prod` - so we can see it working.
-Refresh the page again and... boom! The button is *gone*! *Awesome*!
+in `DiagnosticsButton`, add `#[When]` with `dev` as the
+argument. Thanks to this, the class will be *completely* ignored by the service
+container *unless* we're in the `dev` environment. Head over and refresh.
+It's *still* there. That makes sense: we *are* in
+the `dev` environment. So let's fudge this a bit. Change the `#[When]`
+argument from `dev` to `prod` - so we can see it working.
+Refresh the again and... boom! The button is *gone*! *Awesome*!
 
 ## `#[Exclude]`
 
 Now that this is working, let's talk about the cousin
-of `#[When]`: `#[Exclude]`. This attribute is like a big warning sign that tells
-Symfony to *never* register a specific class as a service in the service
+of `#[When]`: `#[Exclude]`. This is like a big warning sign that tells
+Symfony to *never*, ever register a specific class as a service in the service
 container. Right now, in `config/services.yaml`, this `App/:` section tells
-Symfony to autowire all the classes in the `src/` directory, and
-*inside* `App/:`, we have this `exclude` key, which contains a list of paths
-Symfony should *ignore*. That's the *traditional* way to exclude classes from
-being registered as services, but it can get *complicated* if you have a lot of
-exclusions mixed in with your services. That's where the `#[Exclude]` attribute
-comes in! In `MuteButton.php`, up here, add `#[Exclude]`... then head back to
-our app and refresh. The "Mute" button is *gone*! It *worked*. While you may not
-need to use this attribute often, it's good to know it exists.
+Symfony to autowire every class in the `src/` directory.
+*Inside* `App/:`, we have this `exclude` key. That contains a list of paths
+Symfony should *ignore* and is the *traditional* way to exclude classes from
+being registered as services.
+It's fine, but I find it a bit clunky. *This* is where `#[Exclude]` comes in.
+
+In `MuteButton`, up here, add `#[Exclude]`... then head back to
+our app and refresh. The "Mute" button is *gone*! It *worked*.
+
+This won't be a super common attribute in your app, but hey! This is
+the DI attribute tutorial! So you get to see *all* the neat stuff!
 
 Next: Let's talk about *lazy* services.
