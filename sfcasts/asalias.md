@@ -1,78 +1,101 @@
-# Alias an Interface with AsAlias
+# AsAlias and AsDecorator
 
-Ok, let's add a new feature. I'd like to add button press logging keep an eye
-on what the kids are doing!
+Time to add a new feature! I want to add logging to the button presses so
+we can keep track of what our minions are doing!
 
-In `ButtonRemote`, we could inject the logger service and log before and after
-each button press. Technically though... this does violate the *single responsibility
-principle*. This class should only be responsible for pressing buttons, not
-logging. We'll use *decoration* instead. Ooo fancy!
+In `ButtonRemote`, we *could* inject the logger service and log the button
+presses right here. But technically... this violates something called the
+"single responsibility principle". That's just a fancy way of saying that
+an object should only do one thing. In this case, this object handles
+pressing buttons. Adding logging here would make it do two things.
 
-First, create a `RemoteInterface` in the `Remote` directory. This will have the
-two public methods from our `ButtonRemote` so copy and paste just the signatures
-of these.
+Instead, we're going to use a design pattern called "Decoration". Fancy!
+We're going to create a new class that wraps, or "decorates", our `ButtonRemote`.
 
-Now, we'll implement this interface in `ButtonRemote`:
+In `src/Remote`, create a new PHP class called `LoggingRemote`. This is our
+"decorator". We need it to have the same methods as the object it's decorating. So
+copy the two methods from `ButtonRemote`, paste them here and remove their guts.
+Add a constructor, and inject the logger service with
+`private LoggerInterface` (the one from `Psr\Log`) `$logger`. Now, inject the
+object we're decorating: `private ButtonRemote $inner`. I like to use `$inner`
+as the parameter name when creating decorators.
 
-PhpStorm is happy, so we did this correct, perfect!
+In our methods, first, defer them to the inner object. In `press()`, write
+`$this->inner->press($name);` and in `buttons()`, `return $this->inner->buttons()`.
 
-Next, in `ButtonController`'s `index()` method, instead of injecting
-`ButtonRemote`, inject `RemoteInterface`. Symfony can autowire concrete classes
-and interfaces, but when possible, use interfaces. This makes it easier to swap
-out implementations later.
-
-Back in our app, refresh, press a few buttons... Great, it's all still working!
-
-We're ready to add a new implementation of `RemoteInterface` for the logger.
-In `App\Remote`, create a new `LoggerRemote` class and have it implement
-`RemoteInterface`. Press `Ctrl+Enter` to implement its methods.
-
-Add a constructor and inject the logger service:
-`private LoggerInterface $logger` (the one from `Psr\Log`). Since we want this
-service to decorate another `RemoteInterface`, inject that as well:
-`private RemoteInterface $inner`. The name `$inner` isn't required but is a
-common convention I like to use with decorators.
-
-First, implement the `buttons()` method. We'll just defer to the inner service
-as we don't require any logging here. `return $this->inner-buttons();`.
-
-In `press()`, we'll defer to the inner service: `$this->inner->press($name);`.
-
-Now we can add logging! Before the press, write
-`$this->logger->info('Pressing button {name}')`. For the second argument, the
-context, write `['name' => $name]);`. This `{name}` syntax is a little template
-system that Monolog, Symfony's logging package uses. After the `press()`, copy
-the before line and paste it, changing `Pressing` to `Pressed`.
+Now, let's add logging to `press()`. Before the inner press, write
+`$this->logger->info('Pressing button {$name}')` and add a context array
+with `'name' => $name`. This curly brace stuff is a mini-templating system
+used by Monolog, Symfony's logger. Copy this and paste below the inner press
+and rename "Pressing" to "Pressed".
 
 Decorator done!
 
-Hop back to the app and refresh... Uh oh! An error!
+To actually use our decorator, in `RemoteController`, instead of injecting `ButtonRemote`,
+inject `LoggingRemote`.
 
-> Controller "App\Controller\RemoteController::index" requires the "$remote"
-> argument that could not be resolved...
-> It references the "App\Remote\RemoteInterface" interface but no such service
-> exists...
+Let's try it! Back in our app, press the power button and jump into the profiler
+for the last request. We can see that the logic from `ButtonRemote` is still being
+called. And if we check out the "Logs" panel, we see the messages!
 
-Hmm, what's going on here? 
+You may have noticed our two remotes have the same methods - this is a sign that
+we need a common interface. Create a new class in `src/Remote` called `RemoteInterface`.
+Copy the `press()` method *stub* from `LoggerRemote` and paste it into `RemoteInterface`.
+Do the same for `buttons()`.
 
-We now have two services that implement `RemoteInterface`, and since we're
-autowiring the interface, Symfony doesn't know which one to use. The next part
-of the error gives us a hint on how to fix:
+Now let's have both our remotes implement this interface. In `ButtonRemote`, add
+`implements RemoteInterface`. Do the same in `LoggingRemote`.
 
-> You should maybe alias this interface with one of these existing services:
-> "App\Remote\ButtonRemote", "App\Remote\LoggerRemote".
+Take a look at `LoggerRemote`'s constructor. We're hardcoding `ButtonRemote` here
+so let's change to `RemoteInterface`.
 
-Ok, we need to *alias* the interface to one of the services that implement it.
-Which one though? Well, we want it to use `ButtonRemote` because that's the
-implementation that actually has the button press logic.
+Back in the app, refresh and... Error!
 
-In `ButtonRemote`, add the `#[AsAlias]` attribute above the class. This tells
-Symfony:
+> Cannot autowire service "LoggingRemote": argument "$inner" of method "__construct()"
+> references interface "RemoteInterface" but no such service exists.
 
-> Hey! Whenever you need to autowire the `RemoteInterface`, use the
-> `ButtonRemote` service.
+This error occurs when Symfony tries to autowire an interface but there are multiple
+implementations. We need to tell Symfony which implementation to use. The error
+message contains a hint:
 
-Now back to the app and refresh... it's working again!
+> You should maybe alias this interface to one of these existing services:
+> "ButtonRemote", "LoggingRemote".
 
-But... our `LoggerRemote` isn't actually being used. Next, we'll fix that using
-Symfony service decoration.
+Ah, we need to "alias" our interface. This tells Symfony which implementation to use.
+
+We can do this with, you guessed it, another attribute: `#[AsAlias]`. This gets
+added to the class that we want to use as the implementation. 
+
+Hmm, which of our remote objects should be the alias? When using decoration, you'll want
+the inner-most object to be the alias. In our case, that's `ButtonRemote` so
+open that and add `#[AsAlias]`. This tells Symfony:
+
+> Hey! When you need to autowire a `RemoteInterface`, use `ButtonRemote`.
+
+Back in our app, refresh and... error's gone! Press the "volume up" button and check
+the profiler. Button logic is still being called and if we check the "Logs" panel,
+there's our messages.
+
+Check out our `RemoteController`. We're still injecting a concrete instance of our
+service. Change this to `RemoteInterface`.
+
+Back in the app, press "channel down" and check the profiler. Button logic
+is working, but our logs are gone!
+
+Since we aliased `RemoteInterface` to `ButtonRemote`, Symfony doesn't know about
+our decoration!
+
+We need to configure "service decoration" with another attribute: `#[AsDecorator]`.
+
+`LoggingRemote` is the decorator so open that, add `#[AsDecorator]`. The first
+argument is the service it decorates: `ButtonRemote::class`.
+
+Spin back to the app, refresh and... press "volume up". Check the "Logs" profiler
+panel and... we're logging again!
+
+Using `#[AsDecorator]` makes it super easy to add multiple decorators. Maybe we want
+to add a rate limiting decorator to prevent the kids from mashing buttons. We'd just
+need to create a `RateLimitingRemote` class that implements `RemoteInterface` and add
+`#[AsDecorator(ButtonRemote::class)]`. Easy peasy!
+
+Next: We'll add a custom logging channel and explore "named autowiring"!
