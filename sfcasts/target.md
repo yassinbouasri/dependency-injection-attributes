@@ -4,7 +4,9 @@ In the last chapter, we added logging!
 Check out the "Logs" profile panel. Notice this little "app" tag?
 Symfony's logger, Monolog has the concept of log channels, which are like
 *categories* for your log messages. The default channel is "app", but you can
-create others to categorize your log messages.
+create others.
+
+## Adding a New Log Channel
 
 Let's see if we can add a new channel called "button". Open
 `config/packages/monolog.yaml`. Under `channels`, add a new one
@@ -32,6 +34,8 @@ But there are *multiple* logger services. The others all have an argument,
 including a new one called `buttonLogger`. This is the service we want!
 To grab *this* service, we need to use *named autowiring*.
 
+## Named Autowiring
+
 In `LoggerRemote`, rename the argument to `$buttonLogger`.
 
 Now, head back to our app... refresh the page, and... press the "Channel Up"
@@ -52,16 +56,20 @@ standard autowiring. Maybe this isn't super problematic for logging, but
 imagine something like a database or cache service being autowired
 this way. That *could* be trouble... and I'm generally anti-trouble.
 
+## Target Attribute
+
 We need a way to *enforce* named autowiring. Say hello to the `#[Target]`
 attribute!
 
 Over in `LoggerRemote`, add `#[Target]` above the `LoggerInterface $logger`
 argument. Inside, set the value to `buttonLogger` - the argument name
-(without the `$`) we see in the `debug:autowiring`. Now, the
+(without the `$`) we saw in the `debug:autowiring` command. Now, the
 argument name could be anything, so get creative!
 
 Jump back to the app, refresh, press "Volume Up", and check the "Logs" profile
 panel. We're back to the `button` channel! *Sweet*!
+
+## Enforcing Named Autowiring
 
 To see what I mean by *enforcing* named autowiring, back in
 `config/packages/monolog.yaml`, rename the channel to `buttons` (with an "s").
@@ -75,7 +83,7 @@ hard error when the named autowiring service cannot be found. This is what we
 want!
 
 Fix this by going back to `LoggerRemote` and updating the `#[Target]`
-to `buttonsLogger`.
+to `buttonsLogger` (with an "s").
 
 Refresh the app and we're back in business! Press "Mute" and pop into the
 "Logs" profile panel. Yep, we're logging to our renamed `buttons` channel!
