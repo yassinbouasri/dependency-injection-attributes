@@ -28,7 +28,7 @@ container *unless* we're in the `dev` environment. Head over and refresh.
 It's *still* there. That makes sense: we *are* in
 the `dev` environment. So let's fudge this a bit. Change the `#[When]`
 argument from `dev` to `prod` - so we can see it working.
-Refresh the again and... boom! The button is *gone*! *Awesome*!
+Refresh again and... boom! The button is *gone*! *Awesome*!
 
 ## `#[Exclude]`
 
