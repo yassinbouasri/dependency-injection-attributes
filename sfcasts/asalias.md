@@ -1,4 +1,4 @@
-# AsAlias and AsDecorator
+# Alias an Interface with AsAlias
 
 Time to add a new feature! I want to add logging to the button presses so
 we can keep track of what our minions are doing!
@@ -39,7 +39,7 @@ Let's try it! Back in our app, press the power button and jump into the profiler
 for the last request. We can see that the logic from `ButtonRemote` *is* still being
 called. And if we check out the "Logs" panel, we see the messages!
 
-The two remote classes have the same methods, which this is a sign that
+The two remote classes have the same methods, this is a sign that
 we could use a common interface. Create a new class in `src/Remote/` called `RemoteInterface`.
 Copy the `press()` method *stub* from `LoggerRemote` and paste it here.
 Do the same for `buttons()`.
@@ -57,7 +57,7 @@ Back in the app, refresh and... Error!
 > references interface `RemoteInterface` but no such service exists.
 
 This happens when Symfony tries to autowire an interface but there are multiple
-implementations. We need to tell Symfony *which* of our two service to use when we
+implementations. We need to tell Symfony *which* of our two services to use when we
 type-hint `RemoteInterface`. And the error even gives us a hint!
 
 > You should maybe alias this interface to one of these existing services:
@@ -74,9 +74,9 @@ This tells Symfony:
 
 > Hey! When you need to autowire a `RemoteInterface`, use `ButtonRemote`.
 
-Back in our app, refresh and... the error is gone! Press "volume up" and check
+Back in our app, refresh and... the error is gone! Press "channel up" and check
 the profiler. The button logic is still being called and if we check the "Logs" panel,
-there are our messages.
+there's our messages.
 
 Open up `RemoteController`: we're still injecting a concrete instance of our
 service. That's fine, but we can be fancier now and use `RemoteInterface`.
@@ -88,17 +88,4 @@ Because we aliased `RemoteInterface` to `ButtonRemote`, Symfony doesn't know abo
 our decoration! When it sees the `RemoteInterface` type-hint, it injects `ButtonRemote`,
 not `LoggingRemote`.
 
-We need to configure "service decoration" with another attribute: `#[AsDecorator]`.
-
-`LoggingRemote` is the decorator so open that, add `#[AsDecorator]`. The first
-argument is the service it decorates: `ButtonRemote::class`.
-
-Spin back to the app, refresh and... press "volume up". Check the "Logs" profiler
-panel and... we're logging again!
-
-Using `#[AsDecorator]` makes it super easy to add multiple decorators. Maybe we want
-to add a rate limiting decorator to prevent the kids from mashing buttons. We'd just
-need to create a `RateLimitingRemote` class that implements `RemoteInterface` and add
-`#[AsDecorator(ButtonRemote::class)]`. Easy peasy!
-
-Next: We'll add a custom logging channel and explore "named autowiring"!
+Next: Let's fix this by using service decoration, and of course, another attribute!
