@@ -15,7 +15,7 @@ probably fine, but let's challenge ourselves!
 Instead, we'll use a design pattern called "Decoration" by
 creating a new class that wraps, or "decorates", `ButtonRemote`.
 
-In `src/Remote/`, create a new PHP class called `LoggingRemote`. This is our
+In `src/Remote/`, create a new PHP class called `LoggerRemote`. This is our
 "decorator" and it needs the same methods as the class it's decorating. 
 Copy the two methods from `ButtonRemote`, paste them here and remove their guts.
 Add a constructor, and inject the logger service with
@@ -35,7 +35,7 @@ and change "Pressing" to "Pressed".
 Decorator done!
 
 To actually *use* this decorator, in `RemoteController`, instead of injecting `ButtonRemote`,
-inject `LoggingRemote`.
+inject `LoggerRemote`.
 
 Let's try it! Back in our app, press the power button and jump into the profiler
 for the last request. We can see that the logic from `ButtonRemote` *is* still being
@@ -49,7 +49,7 @@ Copy the `press()` method *stub* from `LoggerRemote` and paste it here.
 Do the same for `buttons()`.
 
 Next, make both remote classes implement this interface. In `ButtonRemote`, add
-`implements RemoteInterface`... and do the same in `LoggingRemote`.
+`implements RemoteInterface`... and do the same in `LoggerRemote`.
 
 In `LoggerRemote`'s constructor, Change `ButtonRemote` to `RemoteInterface`. We
 don't *have* to do this, but now that we have an interface, that's really the
@@ -57,7 +57,7 @@ best thing to type-hint.
 
 Back in the app, refresh and... Error!
 
-> Cannot autowire service `LoggingRemote`: argument `$inner` of method `__construct()`
+> Cannot autowire service `LoggerRemote`: argument `$inner` of method `__construct()`
 > references interface `RemoteInterface` but no such service exists.
 
 This happens when Symfony tries to autowire an interface but there are multiple
@@ -65,7 +65,7 @@ implementations. We need to tell Symfony *which* of our two services to use when
 type-hint `RemoteInterface`. And the error even gives us a hint!
 
 > You should maybe alias this interface to one of these existing services:
-> "ButtonRemote", "LoggingRemote".
+> "ButtonRemote", "LoggerRemote".
 
 Ah, we need to "alias" our interface. Technically, this will create a new service
 whose id is `App\Remote\RemoteInterface`, but is really just an alias - or a pointer -
@@ -92,6 +92,6 @@ is working, but our logs are gone!
 
 Because we aliased `RemoteInterface` to `ButtonRemote`, Symfony doesn't know about
 our decoration! When it sees the `RemoteInterface` type-hint, it injects `ButtonRemote`,
-not `LoggingRemote`.
+not `LoggerRemote`.
 
 Next: Let's fix this by using service decoration, and of course, another attribute!
