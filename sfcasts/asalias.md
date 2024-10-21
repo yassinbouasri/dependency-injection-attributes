@@ -10,6 +10,8 @@ a class should only do one thing. Right now, this class handles
 pressing buttons. Adding logging here would make it do two things. And that's
 probably fine, but let's challenge ourselves!
 
+## Decorator Pattern
+
 Instead, we'll use a design pattern called "Decoration" by
 creating a new class that wraps, or "decorates", `ButtonRemote`.
 
@@ -39,6 +41,8 @@ Let's try it! Back in our app, press the power button and jump into the profiler
 for the last request. We can see that the logic from `ButtonRemote` *is* still being
 called. And if we check out the "Logs" panel, we see the messages!
 
+## Decorator Interface
+
 The two remote classes have the same methods, this is a sign that
 we could use a common interface. Create a new class in `src/Remote/` called `RemoteInterface`.
 Copy the `press()` method *stub* from `LoggerRemote` and paste it here.
@@ -66,6 +70,8 @@ type-hint `RemoteInterface`. And the error even gives us a hint!
 Ah, we need to "alias" our interface. Technically, this will create a new service
 whose id is `App\Remote\RemoteInterface`, but is really just an alias - or a pointer -
 to one of our *real* remote services. 
+
+## `#[AsAlias]`
 
 Do this with, you guessed it, another attribute: `#[AsAlias]`. In `ButtonRemote`,
 our inner-most class, add `#[AsAlias]`.
