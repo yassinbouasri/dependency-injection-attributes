@@ -27,7 +27,7 @@ In each method, first, defer to the inner object. In `press()`, write
 `$this->inner->press($name);` and in `buttons()`, `return $this->inner->buttons()`.
 
 *Now* let's add the logging. Before the inner press, add
-`$this->logger->info('Pressing button {$name}')` and add a context array
+`$this->logger->info('Pressing button {name}')` and add a context array
 with `'name' => $name`. This curly brace stuff is a mini-templating system
 used by Monolog, Symfony's logger. Copy this, paste below the inner press
 and change "Pressing" to "Pressed".
