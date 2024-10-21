@@ -1,0 +1,15 @@
+diff --git a/src/Remote/ParentalControls.php b/src/Remote/ParentalControls.php
+index 5fa3f70..a99c5fb 100644
+--- a/src/Remote/ParentalControls.php
++++ b/src/Remote/ParentalControls.php
+@@ -2,8 +2,10 @@
+ 
+ namespace App\Remote;
+ 
++use Symfony\Component\DependencyInjection\Attribute\Lazy;
+ use Symfony\Component\Mailer\MailerInterface;
+ 
++#[Lazy]
+ final class ParentalControls
+ {
+     public function __construct(

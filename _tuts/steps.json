@@ -204,7 +204,27 @@
             "id": "lazy-use-parentalcontrols-in-volumeupbutton",
             "name": "Lazy: use ParentalControls in VolumeUpButton",
             "description": null
+        },
+        {
+            "id": "lazy-switch-to-false-and-dump-parentalcontrols",
+            "name": "Lazy: switch to false and dump parentalControls",
+            "description": null
+        },
+        {
+            "id": "lazy-add-lazy-to-parentalcontrols",
+            "name": "Lazy: Add Lazy to ParentalControls",
+            "description": null
+        },
+        {
+            "id": "lazy-remove-final",
+            "name": "Lazy: Remove final",
+            "description": null
+        },
+        {
+            "id": "lazy-move-lazy-to-volumeup-parameter",
+            "name": "Lazy: move Lazy to VolumeUp parameter",
+            "description": null
         }
     ],
-    "sha": "eced7b0b35b547c5b445daec51de381ed45784c4"
+    "sha": "aeb51806f114988ded8ca4555a515504fdd21673"
 }
