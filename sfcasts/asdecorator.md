@@ -1,6 +1,6 @@
 # Decorate a Service with AsDecorator
 
-In the last chapter, when we used `#[AsAlias]` to alias `RemoteInterface` to
+In the last chapter, we used `#[AsAlias]` to alias `RemoteInterface` to
 `ButtonRemote` so that when we type-hint `RemoteInterface`, it gives us the
 `ButtonRemote` service. But, this broke our logging! We need to tell Symfony
 to give us `LoggerRemote` instead, but to pass the `ButtonRemote` service *to*
@@ -12,7 +12,7 @@ in the service it decorates: `ButtonRemote::class`.
 
 This tells Symfony:
 
-> Hey, *anything* asks for the `ButtonRemote` service, give them `LoggerRemote` instead.
+> Hey, if *anything* asks for the `ButtonRemote` service, give them `LoggerRemote` instead.
 
 Symfony essentially *swaps* the services and then makes `ButtonRemote` the "inner" service
 to `LoggerRemote`. This solidifies the need for the `RemoteInterface` we
@@ -20,9 +20,9 @@ created earlier. If we tried to type-hint `ButtonRemote` directly, we'd
 get a type error because Symfony would be trying to inject `LoggerRemote`.
 
 So, follow me on this: we autowire `RemoteInterface`. That's aliased to `ButtonRemote`,
-so Symfony tries to give us that. But *then* thanks to `#[AsDecorator]`, it swaps
+so Symfony tries to give us that. But *then*, thanks to `#[AsDecorator]`, it swaps
 that out for `LoggerRemote`... but passes `ButtonRemote` *to* `LoggerRemote`. In
-short, `AsDecorator` allows us to decorate an existing service with our own.
+short, `AsDecorator` allows us to decorate an existing service with another.
 
 Spin back to the app, refresh and... press "volume up". Check the "Logs" profiler
 panel and... we're logging again!
