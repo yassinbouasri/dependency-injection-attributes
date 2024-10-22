@@ -224,7 +224,17 @@
             "id": "lazy-move-lazy-to-volumeup-parameter",
             "name": "Lazy: move Lazy to VolumeUp parameter",
             "description": null
+        },
+        {
+            "id": "more-lazy-use-autowireserviceclosure",
+            "name": "More Lazy: use AutowireServiceClosure",
+            "description": null
+        },
+        {
+            "id": "more-lazy-switch-to-autowirecallable",
+            "name": "More Lazy: switch to AutowireCallable",
+            "description": null
         }
     ],
-    "sha": "aeb51806f114988ded8ca4555a515504fdd21673"
+    "sha": "e459de6f903bc6134448a11828d393bdf7e18abf"
 }
