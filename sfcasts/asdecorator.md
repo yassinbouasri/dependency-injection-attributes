@@ -6,9 +6,13 @@ In the last chapter, we used `#[AsAlias]` to alias `RemoteInterface` to
 to give us `LoggerRemote` instead, but to pass the `ButtonRemote` service *to*
 `LoggerRemote`.
 
+## `#[AsDecorator]`
+
 Basically, we need to tell Symfony that `ButtonRemote` is being decorated by `LoggerRemote`.
 To do this, in `LoggerRemote`, use another attribute: `#[AsDecorator]` passing
-in the service it decorates: `ButtonRemote::class`.
+in the service it decorates: `ButtonRemote::class`:
+
+[[[ code('7e95e51e12') ]]]
 
 This tells Symfony:
 
@@ -19,6 +23,8 @@ to `LoggerRemote`. This solidifies the need for the `RemoteInterface` we
 created earlier. If we tried to type-hint `ButtonRemote` directly, we'd
 get a type error because Symfony would be trying to inject `LoggerRemote`.
 
+## Service Decoration
+
 So, follow me on this: we autowire `RemoteInterface`. That's aliased to `ButtonRemote`,
 so Symfony tries to give us that. But *then*, thanks to `#[AsDecorator]`, it swaps
 that out for `LoggerRemote`... but passes `ButtonRemote` *to* `LoggerRemote`. In
@@ -26,6 +32,8 @@ short, `AsDecorator` allows us to decorate an existing service with another.
 
 Spin back to the app, refresh and... press "volume up". Check the "Logs" profiler
 panel and... we're logging again!
+
+## Multiple Decorators
 
 Using `#[AsDecorator]` makes it super easy to add multiple decorators. Maybe we want
 to add a rate limiting decorator to prevent the kids from mashing buttons. We'd just

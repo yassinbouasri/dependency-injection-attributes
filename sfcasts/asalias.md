@@ -23,19 +23,27 @@ Add a constructor, and inject the logger service with
 object we're decorating: `private ButtonRemote $inner`. I like to use `$inner`
 as the parameter name when creating decorators.
 
+[[[ code('0038383af8') ]]]
+
 In each method, first, defer to the inner object. In `press()`, write
-`$this->inner->press($name);` and in `buttons()`, `return $this->inner->buttons()`.
+`$this->inner->press($name);` and in `buttons()`, `return $this->inner->buttons()`:
+
+[[[ code('366f79ea60') ]]]
 
 *Now* let's add the logging. Before the inner press, add
 `$this->logger->info('Pressing button {name}')` and add a context array
 with `'name' => $name`. This curly brace stuff is a mini-templating system
 used by Monolog, Symfony's logger. Copy this, paste below the inner press
-and change "Pressing" to "Pressed".
+and change "Pressing" to "Pressed":
+
+[[[ code('f9c9f2e1f0') ]]]
 
 Decorator done!
 
 To actually *use* this decorator, in `RemoteController`, instead of injecting `ButtonRemote`,
-inject `LoggerRemote`.
+inject `LoggerRemote`:
+
+[[[ code('85a46f21ce') ]]]
 
 Let's try it! Back in our app, press the power button and jump into the profiler
 for the last request. We can see that the logic from `ButtonRemote` *is* still being
@@ -46,13 +54,24 @@ called. And if we check out the "Logs" panel, we see the messages!
 The two remote classes have the same methods, this is a sign that
 we could use a common interface. Create a new class in `src/Remote/` called `RemoteInterface`.
 Copy the `press()` method *stub* from `LoggerRemote` and paste it here.
-Do the same for `buttons()`.
+Do the same for `buttons()`:
+
+[[[ code('f6e5b7302b') ]]]
 
 Next, make both remote classes implement this interface. In `ButtonRemote`, add
-`implements RemoteInterface`... and do the same in `LoggerRemote`.
+`implements RemoteInterface`:
 
-In `LoggerRemote`'s constructor, Change `ButtonRemote` to `RemoteInterface`. We
-don't *have* to do this, but now that we have an interface, that's really the
+[[[ code('5e6b55bb26') ]]]
+
+... and do the same in `LoggerRemote`:
+
+[[[ code('51875e7d20') ]]]
+
+In `LoggerRemote`'s constructor, Change `ButtonRemote` to `RemoteInterface`:
+
+[[[ code('af721a5771') ]]]
+
+We don't *have* to do this, but now that we have an interface, that's really the
 best thing to type-hint.
 
 Back in the app, refresh and... Error!
@@ -74,7 +93,9 @@ to one of our *real* remote services.
 ## `#[AsAlias]`
 
 Do this with, you guessed it, another attribute: `#[AsAlias]`. In `ButtonRemote`,
-our inner-most class, add `#[AsAlias]`.
+our inner-most class, add `#[AsAlias]`:
+
+[[[ code('c4a17ec755') ]]]
 
 This tells Symfony:
 
@@ -85,7 +106,9 @@ the profiler. The button logic is still being called and if we check the "Logs" 
 there's our messages.
 
 Open up `RemoteController`: we're still injecting a concrete instance of our
-service. That's fine, but we can be fancier now and use `RemoteInterface`.
+service. That's fine, but we can be fancier now and use `RemoteInterface`:
+
+[[[ code('f51056b5be') ]]]
 
 Back in the app, press "channel down" and check the profiler. The button logic
 is working, but our logs are gone!
