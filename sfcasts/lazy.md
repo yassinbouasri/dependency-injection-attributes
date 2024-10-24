@@ -4,7 +4,6 @@ Time to talk about one of my *favorite* Symfony features: lazy services. Many
 times, you inject a service, but it's only used under certain conditions. For example:
 
 ```php
-// TODO - finish this example
 public function calculateSomething(ExpensiveService $service)
 {
     if ($this->isCached()) {
@@ -48,7 +47,8 @@ use `ParentalControls`, it was still instantiated! So was the mailer service it 
 on, the mailer transport, and so on. This is a long chain of dependencies
 that were instantiated but not used!
 
-The fix? Make `ParentalControls` a lazy service. Open that class and add the `#[Lazy]`.
+The fix? Make `ParentalControls` a lazy service. Open that class and add the `#[Lazy]`
+attribute.
 
 Back in our app, refresh, press "volume up", and... an error!
 
