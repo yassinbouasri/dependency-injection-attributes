@@ -1,5 +1,5 @@
 diff --git a/src/Remote/Button/VolumeUpButton.php b/src/Remote/Button/VolumeUpButton.php
-index 29da856..50890cf 100644
+index 775ec4e..158329c 100644
 --- a/src/Remote/Button/VolumeUpButton.php
 +++ b/src/Remote/Button/VolumeUpButton.php
 @@ -4,25 +4,26 @@ namespace App\Remote\Button;
@@ -25,9 +25,9 @@ index 29da856..50890cf 100644
  
      public function press(): void
      {
--        if (false) { // detect if volume is too high
+-        if (false) { // logic to determine if volume is too high
 -            $this->parentalControls->volumeToHigh();
-+        if (true) { // detect if volume is too high
++        if (true) { // logic to determine if volume is too high
 +            ($this->parentalControls)()->volumeToHigh();
          }
  
