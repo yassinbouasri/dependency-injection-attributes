@@ -1,6 +1,6 @@
 diff --git a/src/Remote/ParentalControls.php b/src/Remote/ParentalControls.php
 new file mode 100644
-index 0000000..5fa3f70
+index 0000000..6360e59
 --- /dev/null
 +++ b/src/Remote/ParentalControls.php
 @@ -0,0 +1,18 @@
@@ -17,7 +17,7 @@ index 0000000..5fa3f70
 +    ) {
 +    }
 +
-+    public function volumeToHigh(): void
++    public function volumeTooHigh(): void
 +    {
 +        dump('send volume alert email');
 +    }

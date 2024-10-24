@@ -1,5 +1,5 @@
 diff --git a/src/Remote/ParentalControls.php b/src/Remote/ParentalControls.php
-index a99c5fb..432ccfa 100644
+index 94a7c4d..d80547a 100644
 --- a/src/Remote/ParentalControls.php
 +++ b/src/Remote/ParentalControls.php
 @@ -6,7 +6,7 @@ use Symfony\Component\DependencyInjection\Attribute\Lazy;

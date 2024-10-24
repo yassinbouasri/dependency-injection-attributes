@@ -1,5 +1,5 @@
 diff --git a/src/Remote/Button/VolumeUpButton.php b/src/Remote/Button/VolumeUpButton.php
-index 4fbfb63..775ec4e 100644
+index d4a1e83..080d1d2 100644
 --- a/src/Remote/Button/VolumeUpButton.php
 +++ b/src/Remote/Button/VolumeUpButton.php
 @@ -4,11 +4,13 @@ namespace App\Remote\Button;
@@ -17,7 +17,7 @@ index 4fbfb63..775ec4e 100644
      ) {
      }
 diff --git a/src/Remote/ParentalControls.php b/src/Remote/ParentalControls.php
-index 432ccfa..3b2bca7 100644
+index d80547a..5ccae14 100644
 --- a/src/Remote/ParentalControls.php
 +++ b/src/Remote/ParentalControls.php
 @@ -2,10 +2,8 @@
