@@ -40,4 +40,18 @@ to add a rate limiting decorator to prevent the kids from mashing buttons. We'd 
 need to create a `RateLimitingRemote` class that implements `RemoteInterface` and add
 `#[AsDecorator(ButtonRemote::class)]`.
 
+```php
+#[AsDecorator(ButtonRemote::class)]
+class RateLimitingRemote implements RemoteInterface
+{
+    public function __construct(
+        private RateLimiter $rateLimiter
+        private RemoteInterface $inner,
+    ) {
+    }
+
+    // ...
+}
+```
+
 Next: We'll add a custom logging channel and explore "named autowiring"!
