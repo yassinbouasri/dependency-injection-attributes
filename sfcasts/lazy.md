@@ -1,7 +1,8 @@
 # Lazy Services
 
 Time to talk about one of my *favorite* Symfony features: lazy services. Many
-times, you inject a service, but it's only used under certain conditions. For example:
+times, you inject a service, but it's only used under certain conditions. Here's
+an example:
 
 ```php
 public function calculateSomething(ExpensiveService $service)
@@ -42,7 +43,7 @@ We can see our `ParentalControls` service *is* being used and working!
 Back in `VolumeUpButton`, switch `true` to `false` to pretend we didn't detect
 a high volume. Below the if statement, write `dump($this->parentalControls)`.
 
-Spin over, refresh, press "volume up" and check the profiler. Even though we didn't
+Spin back, refresh, press "volume up" and check the profiler. Even though we didn't
 use `ParentalControls`, it was still instantiated! So was the mailer service it depends
 on, the mailer transport, and so on. This is a long chain of dependencies
 that were instantiated but not used!
