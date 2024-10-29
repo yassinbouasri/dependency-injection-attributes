@@ -45,7 +45,7 @@ need to create a `RateLimitingRemote` class that implements `RemoteInterface` an
 class RateLimitingRemote implements RemoteInterface
 {
     public function __construct(
-        private RateLimiter $rateLimiter
+        private RateLimiter $rateLimiter,
         private RemoteInterface $inner,
     ) {
     }
