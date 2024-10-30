@@ -10,7 +10,9 @@ create others.
 
 Let's see if we can add a new channel called "button". Open
 `config/packages/monolog.yaml`. Under `channels`, add a new one
-called `button`.
+called `button`:
+
+[[[ code('3cae5681f0') ]]]
 
 Perfect! Close this file.
 
@@ -36,7 +38,9 @@ To grab *this* service, we need to use *named autowiring*.
 
 ## Named Autowiring
 
-In `LoggerRemote`, rename the argument to `$buttonLogger`.
+In `LoggerRemote`, rename the argument to `$buttonLogger`:
+
+[[[ code('f7df8f7e41') ]]]
 
 Now, head back to our app... refresh the page, and... press the "Channel Up"
 button. We've watched enough Sponge Bob for one day. Pop into the last request's
@@ -45,7 +49,9 @@ profile and check out the "Logs" panel. Sweet! We're now logging to the `button`
 This is working like it's supposed to, but I'd like to talk
 about a problem that can occur when using named autowiring. Imagine,
 a year from now, we rename this variable to something simpler like
-just `$logger`.
+just `$logger`:
+
+[[[ code('b9a0356414') ]]]
 
 Jump back to our app, refresh the page, and press a button. It *seems* like it
 still works, but check out the "Logs" profile panel. The *message* is there, 
@@ -63,8 +69,11 @@ attribute!
 
 Over in `LoggerRemote`, add `#[Target]` above the `LoggerInterface $logger`
 argument. Inside, set the value to `buttonLogger` - the argument name
-(without the `$`) we saw in the `debug:autowiring` command. Now, the
-argument name could be anything, so get creative!
+(without the `$`) we saw in the `debug:autowiring` command:
+
+[[[ code('71074ee51f') ]]]
+
+Now, the argument name could be anything, so get creative!
 
 Jump back to the app, refresh, press "Volume Up", and check the "Logs" profile
 panel. We're back to the `button` channel! *Sweet*!
@@ -72,7 +81,10 @@ panel. We're back to the `button` channel! *Sweet*!
 ## Enforcing Named Autowiring
 
 To see what I mean by *enforcing* named autowiring, back in
-`config/packages/monolog.yaml`, rename the channel to `buttons` (with an "s").
+`config/packages/monolog.yaml`, rename the channel to `buttons` (with an "s"):
+
+[[[ code('4fcc68a4af') ]]]
+
 Back in the app, refresh, and... we see an error!
 
 > Cannot autowire service "LoggerRemote": argument "$logger" of method
@@ -83,7 +95,9 @@ hard error when the named autowiring service cannot be found. This is what we
 want!
 
 Fix this by going back to `LoggerRemote` and updating the `#[Target]`
-to `buttonsLogger` (with an "s").
+to `buttonsLogger` (with an "s"):
+
+[[[ code('ec40ae76f2') ]]]
 
 Refresh the app and we're back in business! Press "Mute" and pop into the
 "Logs" profile panel. Yep, we're logging to our renamed `buttons` channel!

@@ -11,8 +11,12 @@ In `App\Remote\Button`, create a new class:
 `DiagnosticsButton`. Make it implement `ButtonInterface`... and hold
 "control" + "enter" to add the `press()` method. Inside,
 we'll `dump('Pressed diagnostics button.')`... and, just like before, add
-`#[AsTaggedItem]` with `diagnostics` as the index. Finally, copy
-the `diagnostics.svg` file from the `tutorial/` directory into `assets/icons/`.
+`#[AsTaggedItem]` with `diagnostics` as the index:
+
+[[[ code('f7353113ad') ]]]
+
+Finally, copy the `diagnostics.svg` file from the `tutorial/` directory
+into `assets/icons/`.
 
 Spin over to our app and refresh... new button! And if
 we press it... it even looks like it's working! We're pretty impressive 
@@ -23,11 +27,18 @@ remote control developers!
 Our new button is automatically registered with the service container, but we
 want it *only* in the `dev` environment. The `#[When]` attribute is *perfect* for this. Back
 in `DiagnosticsButton`, add `#[When]` with `dev` as the
-argument. Thanks to this, the class will be *completely* ignored by the service
+argument:
+
+[[[ code('9e99eb0750') ]]]
+
+Thanks to this, the class will be *completely* ignored by the service
 container *unless* we're in the `dev` environment. Head over and refresh.
 It's *still* there. That makes sense: we *are* in
 the `dev` environment. So let's fudge this a bit. Change the `#[When]`
-argument from `dev` to `prod` - so we can see it working.
+argument from `dev` to `prod` - so we can see it working:
+
+[[[ code('6552d10d4a') ]]]
+
 Refresh again and... boom! The button is *gone*! *Awesome*!
 
 ## `#[Exclude]`
@@ -42,8 +53,11 @@ Symfony should *ignore* and is the *traditional* way to exclude classes from
 being registered as services.
 It's fine, but I find it a bit clunky. *This* is where `#[Exclude]` comes in.
 
-In `MuteButton`, up here, add `#[Exclude]`... then head back to
-our app and refresh. The "Mute" button is *gone*! It *worked*.
+In `MuteButton`, up here, add `#[Exclude]`...
+
+[[[ code('4f91191a4c') ]]]
+
+then head back to our app and refresh. The "Mute" button is *gone*! It *worked*.
 
 This won't be a super common attribute in your app, but hey! This is
 the DI attribute tutorial! So you get to see *all* the neat stuff!
