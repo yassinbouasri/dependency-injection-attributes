@@ -52,13 +52,13 @@ Ahora bien, el nombre del argumento puede ser cualquier cosa, ¡así que sé cre
 
 Vuelve a la aplicación, actualízala, pulsa "Subir volumen" y comprueba el panel del perfil "Registros". ¡Hemos vuelto al canal `button`! ¡Genial!
 
-## Aplicar el autocableado por nombre
+## Forzar el autocableado por nombre
 
 Para ver a qué me refiero cuando hablo de imponer el autocableado por nombre, vuelve a`config/packages/monolog.yaml` y cambia el nombre del canal a `buttons` (con una "s"):
 
 [[[ code('4fcc68a4af') ]]]
 
-De vuelta a la aplicación, actualiza y... ¡veremos un error!
+Vuelve a la aplicación, actualízala y... ¡veremos un error!
 
 > No se puede autocablear el servicio "LoggerRemote": argumento "$logger" del método
 > "__construct()" tiene "#[Target('buttonLogger')]" pero no existe tal target.
