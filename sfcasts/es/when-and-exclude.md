@@ -1,10 +1,10 @@
 # Habilitar Servicios en Entornos Específicos con Cuando
 
-¿No sería genial tener un botón secreto especial en nuestro mando a distancia que pudiéramos utilizar para asegurarnos de que funciona correctamente? ¡Claro que sí! Vamos a añadir un nuevo y sigiloso botón "Diagnósticos" que sólo estará disponible en el entorno `dev`.
+¿No sería genial tener un botón secreto especial en nuestro mando a distancia que pudiéramos utilizar para asegurarnos de que funciona correctamente? ¡Claro que sí! Vamos a añadir un nuevo y sigiloso botón "Diagnóstico" que sólo estará disponible en el entorno `dev`.
 
 ## Añadir un botón de diagnóstico
 
-En `App\Remote\Button`, crea una nueva clase:`DiagnosticsButton`. Haz que implemente `ButtonInterface`... y mantén pulsados "control" + "enter" para añadir el método `press()`. Dentro, haremos `dump('Pressed diagnostics button.')`... y, al igual que antes, añadiremos`#[AsTaggedItem]` con `diagnostics` como índice:
+En `App\Remote\Button`, crea una nueva clase:`DiagnosticsButton`. Haz que implemente `ButtonInterface`... y mantén pulsados "control" + "intro" para añadir el método `press()`. Dentro, haremos `dump('Pressed diagnostics button.')`... y, al igual que antes, añadiremos`#[AsTaggedItem]` con `diagnostics` como índice:
 
 [[[ code('f7353113ad') ]]]
 
