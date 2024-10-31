@@ -4,7 +4,7 @@ Lo bueno de los "servicios perezosos" es que no requieren cambios en tu código 
 
 ## `#[AutowireServiceClosure]`
 
-Imagina que `ParentalControls` es final y vive en un paquete de terceros. En `VolumeUpButton`, sustituye `#[Lazy]` por `#[AutowireServiceClosure]` pasando`ParentalControls::class`.:
+Imagina que `ParentalControls` es final y vive en un paquete de terceros. En `VolumeUpButton`, sustituye `#[Lazy]` por `#[AutowireServiceClosure]` pasando`ParentalControls::class`:
 
 [[[ code('b8be529458') ]]]
 
@@ -24,7 +24,7 @@ Quita el `dump()`, gira hasta nuestra aplicación, actualiza y pulsa el botón "
 
 ## `#[AutowireCallable]`
 
-Veamos otra forma de hacer lo mismo. En `VolumeUpButton`, sustituye `#[AutowireServiceClosure]` por `#[AutowireCallable]`. Mantén`ParentalControls::class` como primer argumento, pero ponle como prefijo `service:`:
+Veamos otra forma de hacer lo mismo. En `VolumeUpButton`, sustituye `#[AutowireServiceClosure]` por `#[AutowireCallable]`. Mantén`ParentalControls::class` como primer argumento, pero ponle como prefijo `service`:
 
 [[[ code('86344711fe') ]]]
 
