@@ -9,7 +9,7 @@ have some options.
 
 Pretend that `ParentalControls` is final and lives in a 3rd-party package.
 In `VolumeUpButton`, replace `#[Lazy]` with `#[AutowireServiceClosure]` passing
-`ParentalControls::class`.:
+`ParentalControls::class`:
 
 [[[ code('b8be529458') ]]]
 
@@ -41,7 +41,7 @@ the closure is invoked - and we only invoke it when needed.
 
 Let's look at another way to do the same thing. In `VolumeUpButton`,
 replace `#[AutowireServiceClosure]` with `#[AutowireCallable]`. Keep
-`ParentalControls::class` as the first argument but prefix it with `service:`:
+`ParentalControls::class` as the first argument but prefix it with `service`:
 
 [[[ code('86344711fe') ]]]
 
