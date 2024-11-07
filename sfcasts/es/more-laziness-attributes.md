@@ -55,9 +55,7 @@ Vuelve a la aplicación, actualízala, pulsa el botón "subir volumen" y salta a
 `#[AutowireCallable]` es ciertamente genial, pero para la mayoría de los casos, prefiero utilizar`#[AutowireServiceClosure]` porque:
 * Es perezoso por defecto.
 * Es más flexible porque devuelve el objeto de servicio completo.
-* Y, con los bloques de documentación adecuados, obtenemos* : Autocompletado* Navegación de métodos* Soporte de refactorización* Y un mejor análisis estático con herramientas como PhpStan
-
----
+* Y, con los docblocks adecuados, obtenemos* : Autocompletado* Navegación por métodos* Soporte de refactorización* Y un mejor análisis estático con herramientas como PhpStan
 
 Bien equipo, ¡eso es todo por este curso! Pon un atributo `#[TimeForVacation]` en tu código y ¡relájate!
 
