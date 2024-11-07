@@ -8,7 +8,7 @@ Imagina que `ParentalControls` es final y vive en un paquete de terceros. En `Vo
 
 [[[ code('b8be529458') ]]]
 
-Esto inyectará un cierre que devolverá una instancia de `ParentalControls` cuando se invoque (y sólo se instanciará cuando se invoque).
+Esto inyectará un cierre que devuelve una instancia de `ParentalControls` cuando se invoca (y sólo se instanciará cuando se invoque).
 
 Para ayudar a nuestro IDE, añade un docblock encima del constructor:`@param \Closure():ParentalControls $parentalControls`:
 
@@ -20,7 +20,7 @@ Ahora, abajo en la sentencia `if` del método `press()`, cambia `false` por `tru
 
 ¡Compruébalo! Como hemos añadido el docblock, nuestro IDE proporciona autocompletado y nos permite hacer clic (con CMD+clic) en el método `volumeTooHigh()`. ¡Genial!
 
-Quita el `dump()`, gira hasta nuestra aplicación, actualiza y pulsa el botón "subir volumen". Salta al perfilador. Vemos que se está llamando a la lógica `volumeTooHigh()`. ¡Estupendo! El servicio `ParentalControls` sólo se instala cuando se invoca el cierre, y sólo lo invocamos cuando es necesario.
+Quita el `dump()`, gira hasta nuestra aplicación, actualiza y pulsa el botón "subir volumen". Salta al perfilador. Vemos que se está llamando a la lógica `volumeTooHigh()`. ¡Estupendo! El servicio `ParentalControls` sólo se instancia cuando se invoca el cierre, y sólo lo invocamos cuando es necesario.
 
 ## `#[AutowireCallable]`
 
@@ -34,7 +34,7 @@ Hazlo multilínea para tener más espacio. Añade un segundo argumento:`method: 
 
 [[[ code('fd39eb26f1') ]]]
 
-Cuando Symfony instancie un servicio que utilice `#[AutowireCallable]`, por defecto, instanciará su servicio. ¡Es un ricino ansioso! Para evitarlo, añade un tercer argumento: `lazy: true`:
+Cuando Symfony instancie un servicio que utilice `#[AutowireCallable]`, por defecto, instanciará su servicio. ¡Es un castor ansioso! Para evitarlo, añade un tercer argumento: `lazy: true`:
 
 [[[ code('32f8bbbb71') ]]]
 
@@ -52,13 +52,18 @@ Ahora el cierre lo llama cuando se invoca.
 
 Vuelve a la aplicación, actualízala, pulsa el botón "subir volumen" y salta al perfilador. La lógica `ParentalControls::volumeTooHigh()` sigue siendo llamada. ¡Perfecto!
 
-`#[AutowireCallable]` es ciertamente genial, pero para la mayoría de los casos, prefiero utilizar`#[AutowireServiceClosure]` porque: Es perezoso por defecto. Es más flexible porque devuelve el objeto de servicio completo. Y, con los docblocks adecuados, obtenemos : Autocompletado Navegación por métodos Soporte de refactorización* Y un mejor análisis estático con herramientas como PhpStan
+`#[AutowireCallable]` es ciertamente genial, pero para la mayoría de los casos, prefiero utilizar`#[AutowireServiceClosure]` porque:
+* Es perezoso por defecto.
+* Es más flexible porque devuelve el objeto de servicio completo.
+* Y, con los bloques de documentación adecuados, obtenemos* : Autocompletado* Navegación de métodos* Soporte de refactorización* Y un mejor análisis estático con herramientas como PhpStan
+
+---
 
 Bien equipo, ¡eso es todo por este curso! Pon un atributo `#[TimeForVacation]` en tu código y ¡relájate!
 
 La configuración de servicios YAML no va a desaparecer del todo, pero estos atributos mejoran tu experiencia como desarrollador al mantener juntos tu código y la configuración de servicios.
 
-Casi en cada nueva versión de Symfony se añaden más atributos. ¡Sigue el [blog de Symfony](https://symfony.com/blog) para estar al día! Mira esto, en Symfony 7.2, ¡hay un nuevo atributo `#[WhenNot]`! Es básicamente lo contrario del atributo `#[When]` del que hablábamos antes. ¡Genial!
+Casi en cada nueva versión de Symfony se añaden más atributos. ¡Sigue el [blog de Symfony](https://symfony.com/blog) para estar al día! Mira esto, en Symfony 7.2, ¡hay un nuevo atributo `#[WhenNot]`! Es básicamente lo contrario del atributo `#[When]` del que hablamos antes. ¡Genial!
 
 Consulta la sección "Inyección de dependencia" del documento [Descripción general de los atributos de Symfony](https://symfony.com/doc/current/reference/attributes.html#dependency-injection) para ver una lista de todos los atributos de inyección de dependencia disponibles actualmente y cómo funcionan.
 
