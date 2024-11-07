@@ -87,8 +87,6 @@ The `ParentalControls::volumeTooHigh()` logic is still being called. Perfect!
   - Refactoring support
   - And better static analysis with tools like PhpStan
 
----
-
 Ok team, that's it for this course! Put a `#[TimeForVacation]` attribute on your
 code and go relax!
 
