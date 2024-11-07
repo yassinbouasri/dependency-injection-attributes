@@ -162,14 +162,14 @@ Es más flexible porque devuelve
 el objeto de servicio completo.
 
 00:03:01.326 --> 00:03:03.616 align:middle
-Y, con los docblocks adecuados, obtenemos:
+Y, con los docblocks adecuados, obtenemos
 
 00:03:03.776 --> 00:03:09.626 align:middle
-Autocompletado Navegación por métodos Soporte de
-refactorización Y un mejor análisis estático con herramientas
+autocompletado, navegación por métodos, soporte de
+refactorización y un mejor análisis estático con herramientas
 
 00:03:09.626 --> 00:03:13.686 align:middle
-como PhpStan Ok equipo,
+como PhpStan. Bien equipo,
 ¡eso es todo por este curso!
 
 00:03:14.026 --> 00:03:17.706 align:middle
