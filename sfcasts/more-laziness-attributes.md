@@ -81,11 +81,8 @@ The `ParentalControls::volumeTooHigh()` logic is still being called. Perfect!
 
 1. It's lazy by default.
 2. More flexible because it returns the full service object.
-3. And, with proper docblocks, we get:
-  - Auto-completion
-  - Method navigation
-  - Refactoring support
-  - And better static analysis with tools like PhpStan
+3. And, with proper docblocks, we get: auto-completion, method navigation, refactoring
+   support, and better static analysis with tools like PhpStan.
 
 ---
 
