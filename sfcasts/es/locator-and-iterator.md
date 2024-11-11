@@ -2,7 +2,7 @@
 
 En el capítulo anterior, hicimos que estos botones se listaran mediante programación. Pero al hacerlo, ¡rompimos la funcionalidad real de pulsar botones! Los niños se están poniendo inquietos: tenemos que arreglar esto.
 
-En `ButtonRemote`, hay un par de formas de solucionarlo. El primer enfoque, que probablemente sea el más sencillo, consiste en inyectar dos argumentos: uno que sea un iterador de los servicios del botón y otro que sea un localizador, es decir, un minicontenedor con un método `get()` para obtener cada servicio. Eso funcionaría y es perfectamente válido. ¡Pero podemos hacerlo mejor!
+En `ButtonRemote`, hay un par de formas de solucionarlo. La primera, que probablemente sea la más sencilla, consiste en inyectar dos argumentos: uno que sea un iterador de los servicios del botón y otro que sea un localizador, es decir, un minicontenedor con un método `get()` para obtener cada servicio. Eso funcionaría y es perfectamente válido. ¡Pero podemos hacerlo mejor!
 
 ## `ServiceCollectionInterface`
 
@@ -26,7 +26,7 @@ Me encanta ser perezoso, pero tenemos un problema. Aquí abajo, en `buttons()`, 
 
 `ServiceCollectionInterface` ¡al rescate! Los localizadores de servicios Symfony tienen un método especial llamado `getProvidedServices()`. Elimina todo este código y`dd($this->buttons->getProvidedServices())` para ver qué devuelve:
 
-[[[ code('7c963b95f9') ]]]
+[[[ code('08be3abedf') ]]]
 
 Vuelve a nuestra aplicación y actualízala. Esto parece casi idéntico al mapeo manual que utilizamos anteriormente con `#[AutowireLocator]`.
 
@@ -48,7 +48,7 @@ Crea una nueva clase PHP llamada `MuteButton` y haz que implemente`ButtonInterfa
 
 Sólo tenemos que hacer otra cosa. Cada botón tiene un icono SVG en`assets/icons` con el mismo nombre que el botón. Copia el archivo `mute.svg` de`tutorial/` y pégalo aquí.
 
-¡Momento de la verdad! Vuelve a nuestra aplicación, actualiza y... ¡ahí está! Haz clic en él y comprueba el perfilador. ¡Funciona! Ahora podemos silenciar la TV cuando los niños estén viendo Barney. ¡Perfecto!
+¡Momento de la verdad! Vuelve a nuestra aplicación, actualiza y... ¡ahí está! Haz clic en él y comprueba el perfilador. ¡Funciona! Ahora podemos silenciar la tele cuando los niños estén viendo Barney. ¡Perfecto!
 
 ¡Eso es todo para esta refactorización! Añadir botones es sencillo y eficaz.
 
