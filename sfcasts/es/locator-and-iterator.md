@@ -42,13 +42,13 @@ Para celebrarlo, ¡vamos a añadir un nuevo botón a nuestro mando a distancia!
 
 ## Añadir un botón de silencio
 
-Crea una nueva clase PHP llamada `MuteButton` y haz que implemente`ButtonInterface`. Pulsa `Ctrl+Enter` para generar el método `press()`. Dentro, escribe `dump('Pressed mute button')`. Ahora, añade `#[AsTaggedItem]` con un `$index`de `mute`. Deja la prioridad por defecto, `0`. Esto colocará este botón por debajo de los demás:
+Crea una nueva clase PHP llamada `MuteButton` y haz que se implemente`ButtonInterface`. Pulsa `Ctrl+Enter` para generar el método `press()`. Dentro, escribe `dump('Pressed mute button')`. Ahora, añade `#[AsTaggedItem]` con un `$index`de `mute`. Deja la prioridad por defecto, `0`. Esto colocará este botón por debajo de los demás:
 
 [[[ code('43d438a73c') ]]]
 
 Sólo tenemos que hacer otra cosa. Cada botón tiene un icono SVG en`assets/icons` con el mismo nombre que el botón. Copia el archivo `mute.svg` de`tutorial/` y pégalo aquí.
 
-¡Momento de la verdad! Vuelve a nuestra aplicación, actualiza y... ¡ahí está! Haz clic en él y comprueba el perfilador. ¡Funciona! Ahora podemos silenciar la tele cuando los niños estén viendo Barney. ¡Perfecto!
+¡Momento de la verdad! Vuelve a nuestra aplicación, actualízala y... ¡ahí está! Haz clic en él y comprueba el perfilador. ¡Funciona! Ahora podemos silenciar la tele cuando los niños estén viendo Barney. ¡Perfecto!
 
 ¡Eso es todo para esta refactorización! Añadir botones es sencillo y eficaz.
 
