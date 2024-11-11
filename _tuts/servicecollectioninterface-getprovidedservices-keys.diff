@@ -1,14 +1,11 @@
 diff --git a/src/Remote/ButtonRemote.php b/src/Remote/ButtonRemote.php
-index 1abe26b..c6f3652 100644
+index d8344b4..c6f3652 100644
 --- a/src/Remote/ButtonRemote.php
 +++ b/src/Remote/ButtonRemote.php
-@@ -24,8 +24,6 @@ final class ButtonRemote
+@@ -24,5 +24,6 @@ final class ButtonRemote
       */
      public function buttons(): iterable
      {
--        foreach ($this->buttons as $name => $button) {
--            yield $name;
--        }
 +        return array_keys($this->buttons->getProvidedServices());
      }
  }

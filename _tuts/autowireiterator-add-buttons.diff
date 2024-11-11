@@ -1,5 +1,5 @@
 diff --git a/src/Remote/ButtonRemote.php b/src/Remote/ButtonRemote.php
-index 31517eb..67f4dcd 100644
+index 31517eb..46de3c3 100644
 --- a/src/Remote/ButtonRemote.php
 +++ b/src/Remote/ButtonRemote.php
 @@ -3,14 +3,13 @@
@@ -20,7 +20,7 @@ index 31517eb..67f4dcd 100644
      ) {
      }
  
-@@ -18,4 +17,14 @@ final class ButtonRemote
+@@ -18,4 +17,18 @@ final class ButtonRemote
      {
          $this->buttons->get($name)->press();
      }
@@ -30,8 +30,12 @@ index 31517eb..67f4dcd 100644
 +     */
 +    public function buttons(): iterable
 +    {
++        $buttons = [];
++
 +        foreach ($this->buttons as $name => $button) {
-+            yield $name;
++            $buttons[] = $name;
 +        }
++
++        return $buttons;
 +    }
  }
