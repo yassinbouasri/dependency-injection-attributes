@@ -14,7 +14,7 @@ El minicontenedor es estupendo para obtener servicios individuales. Pero no pued
 
 Ahora, abajo, haz un bucle sobre los botones:`foreach ($this->buttons as $name => $button)`. `$button` es el servicio real, pero vamos a ignorarlo por completo y sólo cogeremos el `$name`, y lo añadiremos a esta matriz `$buttons`. En la parte inferior, `return $buttons`.
 
-[[[ code('c85cf4f4dd') ]]]
+[[[ code('4776e9ba11') ]]]
 
 ## Pasar botones a la plantilla
 
@@ -26,7 +26,7 @@ Añade un `dd()` para ver qué devuelve:
 
 [[[ code('f02e72eb70') ]]]
 
-Vale, de vuelta en el navegador, actualiza la página y... hm... eso no es exactamente lo que queremos. En lugar de una lista de números, queremos una lista de nombres de botones. Para solucionarlo, vuelve a `ButtonRemote`, busca `#[AutowireIterator]`. `#[AutowireLocator]`, el atributo que teníamos antes, utiliza automáticamente la propiedad `$index` de `#[AsTaggedItem]` para las claves de servicio. `#[AutowireIterator]` ¡no lo hace! Sólo nos da un iterable con claves enteras.
+Vale, de vuelta al navegador, actualiza la página y... hm... no es exactamente lo que queremos. En lugar de una lista de números, queremos una lista de nombres de botones. Para solucionarlo, vuelve a `ButtonRemote`, busca `#[AutowireIterator]`. `#[AutowireLocator]`, el atributo que teníamos antes, utiliza automáticamente la propiedad `$index` de `#[AsTaggedItem]` para las claves de servicio. `#[AutowireIterator]` ¡no lo hace! Sólo nos da un iterable con claves enteras.
 
 ## `#[AutowireIterator]`'s `indexAttribute`
 
@@ -44,7 +44,7 @@ Elimina el `dd()`, luego abre `index.html.twig`.
 
 ## Renderizar botones dinámicamente
 
-Aquí tenemos una lista de botones codificada. Añade algo de espacio y luego`for button in buttons`:
+Aquí tenemos una lista de botones codificada. Añade un poco de espacio y luego`for button in buttons`:
 
 [[[ code('f931ad08ce') ]]]
 
@@ -94,7 +94,7 @@ Vuelve a nuestra aplicación y actualízala... ¡todo bien! ¡Ya estamos de nuev
 
 Pero te habrás dado cuenta de que tenemos un gran problema. Pulsa cualquier botón y... ¡Error!
 
-> Se ha intentado llamar a un método indefinido "get" de la clase
+> Se ha intentado llamar a un método no definido "get" de la clase
 > `RewindableGenerator`.
 
 ¿Eh?
