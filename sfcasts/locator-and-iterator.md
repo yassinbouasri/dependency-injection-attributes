@@ -47,7 +47,7 @@ names, this is a waste!
 a special method called `getProvidedServices()`. Remove all this code and
 `dd($this->buttons->getProvidedServices())` to see what it returns:
 
-[[[ code('7c963b95f9') ]]]
+[[[ code('08be3abedf') ]]]
 
 Jump back to our app and refresh. This looks almost identical to the manual
 mapping we previously used with `#[AutowireLocator]`.

@@ -27,7 +27,7 @@ Now, below, loop over the buttons:
 but we're going to ignore that *completely* and just grab the `$name`, and add it to
 this `$buttons` array. At the bottom, `return $buttons`.
 
-[[[ code('c85cf4f4dd') ]]]
+[[[ code('4776e9ba11') ]]]
 
 ## Passing Buttons to the Template
 
