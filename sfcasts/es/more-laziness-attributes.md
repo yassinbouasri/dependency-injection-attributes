@@ -50,7 +50,7 @@ Abajo, en `press()`, elimina la llamada a `->volumeTooHigh()`:
 
 Ahora el cierre lo llama cuando se invoca.
 
-Vuelve a la aplicación, actualízala, pulsa el botón "subir volumen" y salta al perfilador. La lógica `ParentalControls::volumeTooHigh()` sigue siendo llamada. ¡Perfecto!
+Vuelve a la aplicación, actualízala, pulsa el botón "subir volumen" y salta al perfilador. Se sigue llamando a la lógica `ParentalControls::volumeTooHigh()`. ¡Perfecto!
 
 `#[AutowireCallable]` es ciertamente genial, pero para la mayoría de los casos, prefiero utilizar`#[AutowireServiceClosure]` porque: Es perezoso por defecto. Es más flexible porque devuelve el objeto de servicio completo. * Y, con docblocks adecuados, obtendremos: autocompletado, navegación por métodos, soporte de refactorización y un mejor análisis estático con herramientas como PhpStan.
 
