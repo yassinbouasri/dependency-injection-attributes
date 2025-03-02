@@ -70,7 +70,7 @@ to the code, it's an almost out-of-the-box Symfony 7.1 app.
 ## Tour the App
 
 We have a single controller - `RemoteController` - and single route - `home`.
-This contoller handles rendering the UI and button clicks. When a button is
+This controller handles rendering the UI and button clicks. When a button is
 clicked, we handle the different button logic (represented by a `dump()`), add
 the flash message, and redirect to the same route. If it's *not* handling a
 button click, it renders this `index.html.twig`. That's our remote template.
