@@ -23,7 +23,6 @@ final class RemoteController extends AbstractController
             }
 
             $this->addFlash('success', sprintf('%s pressed', u($button)->replace('-', ' ')->title(allWords: true)));
-
             return $this->redirectToRoute('home');
         }
 
